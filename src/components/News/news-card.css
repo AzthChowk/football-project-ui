@@ -1,0 +1,10 @@
+.news-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  margin: 10px 0;
+}
+.news-card-grid img {
+  width: 100%;
+  border-radius: 5px;
+}

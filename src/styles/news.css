@@ -1,0 +1,15 @@
+/* .news-page {
+  padding-top: 90px;
+} */
+.news-display-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+.news-page-header {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+  margin: 20px 0;
+}

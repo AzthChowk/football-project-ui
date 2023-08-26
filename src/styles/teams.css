@@ -1,0 +1,15 @@
+/* .teams-page {
+  padding-top: 90px;
+} */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.teams-page-header {
+  display: flex;
+  justify-content: flex-start;
+  gap: 50px;
+  align-items: center;
+  margin: 20px 0;
+}

@@ -1,0 +1,44 @@
+.container {
+  max-width: 1366px;
+  margin: auto;
+}
+.navbar {
+  background-color: rgb(245, 245, 245);
+  margin: auto;
+  width: 100%;
+  height: 90px;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+
+.top-header-cts {
+  border-bottom: 1px solid rgb(206, 206, 206);
+  padding: 5px;
+}
+.top-header-cts i {
+  padding-right: 10px;
+  color: rgb(158, 1, 1);
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-menu .logo {
+  padding: 14px 0;
+  color: rgb(158, 1, 1);
+}
+.navbar-menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+.navbar-menu li {
+  padding: 20px 0 0 40px;
+}
+.navbar-menu a {
+  color: rgb(158, 1, 1);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+}

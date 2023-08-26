@@ -1,0 +1,45 @@
+.players-display-page-header {
+  display: flex;
+  justify-content: flex-start;
+  gap: 50px;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid #999;
+}
+.players-display-page-header h1 {
+  font-weight: 300;
+  font-size: 40px;
+  text-transform: uppercase;
+}
+.players-display-page-header input[type="search"] {
+  padding: 7px;
+  width: 500px;
+  outline: none;
+  font-size: 20px;
+}
+.players-display-page-header button {
+  background-color: green;
+  color: white;
+  border: none;
+}
+.players-display-page-header button:hover {
+  background-color: rgb(1, 114, 1);
+  color: white;
+  border: none;
+}
+
+/* =====================Table================ */
+.players-display-table {
+  margin: 20px 0;
+  text-transform: uppercase;
+}
+.players-display-table table td {
+  padding: 5px;
+}
+.players-display-table table th {
+  padding: 10px 5px;
+}
+.players-display-table img {
+  border-radius: 50%;
+  width: 75px;
+}
