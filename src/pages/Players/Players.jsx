@@ -83,13 +83,7 @@ const Players = () => {
                     <img src={item.playerImage} alt="" />
                   </StyledTableCell>
                   <StyledTableCell>
-                    <h3>
-                      {item.firstName +
-                        " " +
-                        item.middleName +
-                        " " +
-                        item.lastName}
-                    </h3>
+                    <h3>{item.fullName}</h3>
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {item.position}
@@ -101,7 +95,7 @@ const Players = () => {
                     {item.dob.split("T")[0]}
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                    {item.currentClub}
+                    {item.clubName}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

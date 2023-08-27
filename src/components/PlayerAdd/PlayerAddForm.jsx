@@ -29,6 +29,7 @@ const PlayerAddForm = () => {
   // const [loading, setLoading] = useState(false);
   return (
     <div className="container">
+      {success && <h1>Added Successfully.</h1>}
       <h1>Add Player</h1>
       <Formik
         initialValues={{

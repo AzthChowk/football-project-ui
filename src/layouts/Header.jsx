@@ -18,7 +18,7 @@ const Header = () => {
       </div>
       <div className="container navbar-menu">
         <div className="logo">
-          <h2>Football X</h2>
+          <h2>Football X - League</h2>
         </div>
         <div className="menu-item">
           <ul>

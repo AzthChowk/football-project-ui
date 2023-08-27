@@ -56,7 +56,7 @@ const TeamCard = () => {
                 Coach : <strong>{coach}</strong>
               </h5>
               <button>View details</button>
-              {/* <button onClick={() => deleteTeam(_id)}>Delete Team</button> */}
+              <button onClick={() => deleteTeam(_id)}>Delete Team</button>
             </div>
           );
         })}

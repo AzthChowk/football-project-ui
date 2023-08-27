@@ -1,11 +1,12 @@
-import HomePageRoutes from "./HomePageRoutes";
-import NewsRoutes from "./NewsRoutes";
-import TeamsRoutes from "./TeamsRoutes";
-import LoginRoutes from "./LoginRoutes";
 import DashBoardPageRoutes from "./DashBoardPageRoutes";
-import PlayersPageRoutes from "./PlayersPageRoutes";
+import HomePageRoutes from "./HomePageRoutes";
+import LoginRoutes from "./LoginRoutes";
+import NewsAddFormRoutes from "./NewsAddFormRoutes";
+import NewsRoutes from "./NewsRoutes";
 import PlayerAddPageRoutes from "./PlayerAddPageRoutes";
+import PlayersPageRoutes from "./PlayersPageRoutes";
 import TeamAddPageRoutes from "./TeamAddPageRoutes";
+import TeamsRoutes from "./TeamsRoutes";
 
 const applicationRoutes = [
   ...HomePageRoutes,
@@ -16,5 +17,6 @@ const applicationRoutes = [
   ...PlayersPageRoutes,
   ...PlayerAddPageRoutes,
   ...TeamAddPageRoutes,
+  ...NewsAddFormRoutes,
 ];
 export default applicationRoutes;

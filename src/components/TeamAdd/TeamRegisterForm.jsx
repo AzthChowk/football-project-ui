@@ -13,6 +13,7 @@ const TeamRegisterForm = () => {
 
   return (
     <div className="container">
+      {success && <h1>Added Successfully.</h1>}
       <h1>Register Team</h1>
       <Formik
         initialValues={{
