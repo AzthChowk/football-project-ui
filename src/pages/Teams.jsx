@@ -8,7 +8,6 @@ const Teams = () => {
     <div className="container teams-page">
       <div className="teams-page-header">
         <h1>Teams</h1>
-        <Link to="/team/add">Add Team</Link>
       </div>
       <div className="team-grid">
         <TeamCard />

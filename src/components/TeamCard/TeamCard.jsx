@@ -23,7 +23,7 @@ const TeamCard = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const teamList = await axios.get(url);
+        const teamList = await axios.post(url);
         console.log(teamList.data);
         setTeams(teamList.data);
       } catch (error) {
@@ -55,8 +55,6 @@ const TeamCard = () => {
               <h5>
                 Coach : <strong>{coach}</strong>
               </h5>
-              <button>View details</button>
-              <button onClick={() => deleteTeam(_id)}>Delete Team</button>
             </div>
           );
         })}

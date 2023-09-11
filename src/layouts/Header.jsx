@@ -1,52 +1,74 @@
+import { Box } from "@mui/system";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/header.css";
-import { FaFacebook, FaGooglePlus } from "react-icons/fa6";
+import "./header.css";
+import { Typography } from "@mui/material";
+
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 const Header = () => {
   return (
-    <nav className="navbar">
-      <div className="top-header">
-        <div className="container top-header-cts">
-          <i>
-            <FaFacebook size="20px" />
-          </i>
-          <i>
-            <FaGooglePlus size="20px" />
-          </i>
-        </div>
-      </div>
-      <div className="container navbar-menu">
-        <div className="logo">
-          <h2>Football X - League</h2>
-        </div>
-        <div className="menu-item">
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/teams">Teams</NavLink>
-            </li>
-            <li>
-              <NavLink to="/players">Players</NavLink>
-            </li>
-            <li>
-              <NavLink to="/fixtures">Fixture</NavLink>
-            </li>
-            <li>
-              <NavLink to="/point-table">Point Table</NavLink>
-            </li>
-            <li>
-              <NavLink to="/news">News</NavLink>
-            </li>
-            <li>
-              <NavLink to="/login">Sign In</NavLink>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Box>
+      <nav className="navbar">
+        <Box className="top-header">
+          <Box className="container top-header-cts">
+            <FacebookIcon />
+            <TwitterIcon />
+          </Box>
+        </Box>
+        <Box className="container navbar-menu">
+          <Box className="logo">
+            <Typography>Football X - League</Typography>
+          </Box>
+          <Box className="menu-item">
+            <ul>
+              <li>
+                <NavLink to="/">
+                  <Typography>Home</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="teams">
+                  <Typography>Teams</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="players">
+                  <Typography>Players</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="fixtures">
+                  <Typography>Fixtures</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="results">
+                  <Typography>Results</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="point-table">
+                  <Typography>Point Table</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="news">
+                  <Typography>News</Typography>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="login">
+                  <Typography>Sign in</Typography>
+                </NavLink>
+              </li>
+            </ul>
+          </Box>
+        </Box>
+      </nav>
+    </Box>
   );
 };
 
