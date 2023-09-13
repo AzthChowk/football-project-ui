@@ -14,12 +14,17 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 const queryClient = new QueryClient();
 
+// react redux
+import { Provider } from "react-redux";
+import store from "./redux-store/store";
+
 //Dashboard
 import DashboardIndex from "./pages/DashBoard/DashBoardIndex";
 import DashboardRoot from "./pages/DashBoard/DashboardRoot";
 import DashboardPlayers from "./pages/DashBoard/Players"; // renamed from players
 import DashboardTeams from "./pages/DashBoard/Teams";
 import FixturePage from "./pages/fixture-page/FixturePage";
+import Result from "./pages/Result/Result";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "players",
         element: <Players />,
+      },
+      {
+        path: "results",
+        element: <Result />,
       },
       {
         path: "login",
@@ -69,7 +78,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );

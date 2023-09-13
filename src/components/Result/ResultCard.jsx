@@ -1,20 +1,18 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
-import { useSelector } from "react-redux";
 
-const FixtureCard = ({
-  _id,
+//mui
+import { Typography } from "@mui/material";
+
+const ResultCard = ({
   matchNumber,
   opponentOneName,
-  opponentTwoName,
-  time,
-  date,
-  playGround,
   opponentOneLogo,
+  opponentTwoName,
   opponentTwoLogo,
+  opponentOneGoalScore,
+  opponentTwoGoalScore,
 }) => {
-  const resultData = useSelector((state) => state.result);
-  console.log(resultData);
   return (
     <Box
       sx={{
@@ -51,7 +49,7 @@ const FixtureCard = ({
           }}
         >
           {opponentOneName}
-          <img
+          {/* <img
             src={opponentOneLogo}
             alt=""
             style={{
@@ -61,7 +59,7 @@ const FixtureCard = ({
               verticalAlign: "middle",
               margin: " 0 10px ",
             }}
-          />
+          /> */}
         </Typography>
         <Typography
           sx={{
@@ -72,15 +70,8 @@ const FixtureCard = ({
             borderRadius: "5px",
           }}
         >
-          {resultData.isMatchFinished === true ? (
-            <h4>{resultData.value}</h4>
-          ) : (
-            <h4>{(+time / 100).toPrecision(4)}</h4>
-          )}
-
-          {/* {resultData.map((item) => {
-            return <>{item.value}</>;
-          })} */}
+          {opponentOneGoalScore} - {opponentTwoGoalScore}
+          {/* {(+time / 100).toPrecision(4)} */}
         </Typography>
 
         <Typography
@@ -91,7 +82,7 @@ const FixtureCard = ({
             fontFamily: "Dm Sans",
           }}
         >
-          <img
+          {/* <img
             src={opponentTwoLogo}
             alt=""
             style={{
@@ -101,7 +92,7 @@ const FixtureCard = ({
               verticalAlign: "middle",
               margin: " 0 10px ",
             }}
-          />
+          /> */}
 
           {opponentTwoName}
         </Typography>
@@ -112,11 +103,11 @@ const FixtureCard = ({
         </Typography>
 
         <Typography sx={{ padding: "0 20px", fontWeight: 700 }}>
-          {date.split("T")[0]} ( {playGround} )
+          {/* {date.split("T")[0]} ( {playGround} ) */}
         </Typography>
       </Box>
     </Box>
   );
 };
 
-export default FixtureCard;
+export default ResultCard;
