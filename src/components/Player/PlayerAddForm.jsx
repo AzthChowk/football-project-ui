@@ -42,7 +42,7 @@ const position = [
   "Goal Keeper",
 ];
 
-export default function CustomizedDialogs() {
+export default function PlayerAddForm() {
   const [open, setOpen] = React.useState(false);
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -78,7 +78,7 @@ export default function CustomizedDialogs() {
 
   return (
     <Box className="player-add-form">
-      <Button variant="contained" sx={{ padding: 1 }} onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Add Player
       </Button>
       <BootstrapDialog
@@ -139,11 +139,11 @@ export default function CustomizedDialogs() {
             console.log(values);
             try {
               await $axios.post("/player/create", values);
-              console.log("Player added successfully.");
+              console.log("Player updated successfully.");
               setSuccess(true);
             } catch (error) {
               setFailed(true);
-              console.log(error.message, "Cannot add player.");
+              console.log(error.message, "Cannot update player.");
             }
           }}
         >

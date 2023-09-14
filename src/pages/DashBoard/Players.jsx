@@ -18,7 +18,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { alpha, styled } from "@mui/material/styles";
 import { getPlayersList } from "../../../lib/apis/players-apis";
-import PlayerAddForm from "../../components/PlayerAdd/PlayerAddForm";
+import PlayerAddForm from "../../components/Player/PlayerAddForm";
+import PlayerEditForm from "../../components/Player/PlayerEditForm";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -172,7 +173,7 @@ const Players = () => {
                           {item.clubName}
                         </TableCell>
                         <TableCell sx={{ padding: "2px" }}>
-                          <Button>Edit</Button>
+                          <PlayerEditForm playerId={item._id} />
                           <Button>Delete</Button>
                         </TableCell>
                       </TableRow>

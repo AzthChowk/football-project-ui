@@ -1,4 +1,4 @@
-import PlayerAddForm from "../components/PlayerAdd/PlayerAddForm";
+import PlayerAddForm from "../components/Player/PlayerAddForm";
 
 const PlayerAddPageRoutes = [
   {
