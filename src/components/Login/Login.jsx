@@ -34,6 +34,7 @@ const Login = () => {
               const accesstoken = response.data.accessToken;
               console.log(response.data.message);
               localStorage.setItem("accesstoken", accesstoken);
+              const isLoggedIn = localStorage.setItem("isLoggedIn", true);
               navigate("/admin");
             } catch (error) {
               console.log(error.message);

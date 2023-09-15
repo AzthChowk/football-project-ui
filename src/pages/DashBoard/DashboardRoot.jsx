@@ -22,6 +22,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import TableRowsIcon from "@mui/icons-material/TableRows";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 
 const DashboardRoot = () => {
   const [expand, setExpand] = React.useState(true);
@@ -146,7 +147,7 @@ const DashboardRoot = () => {
           </List>
         </nav>
         <Divider />
-        <nav aria-label="secondary mailbox folders">
+        <nav>
           <List>
             <ListItem disablePadding>
               <Link to="teams">
@@ -171,7 +172,7 @@ const DashboardRoot = () => {
           </List>
         </nav>
         <Divider />
-        <nav aria-label="secondary mailbox folders">
+        <nav>
           <List>
             <ListItem disablePadding>
               <ListItemButton>
@@ -179,6 +180,14 @@ const DashboardRoot = () => {
                   <ScheduleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Fixtures" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <WorkspacePremiumIcon />
+                </ListItemIcon>
+                <ListItemText primary="Results" />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -192,7 +201,7 @@ const DashboardRoot = () => {
           </List>
         </nav>
         <Divider />
-        <nav aria-label="secondary mailbox folders">
+        <nav>
           <List>
             <ListItem disablePadding>
               <ListItemButton>

@@ -25,11 +25,14 @@ import DashboardPlayers from "./pages/DashBoard/Players"; // renamed from player
 import DashboardTeams from "./pages/DashBoard/Teams";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import Result from "./pages/Result/Result";
+import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
+import NoPageFound from "./pages/NoPageFound/NoPageFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePageRoot />,
+    errorElement: <NoPageFound />,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -60,7 +63,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <DashboardRoot />,
+    element: (
+      <AdminRouteProtect>
+        <DashboardRoot />
+      </AdminRouteProtect>
+    ),
+    errorElement: <NoPageFound />,
+
     children: [
       { index: true, element: <DashboardIndex /> },
       {
