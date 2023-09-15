@@ -1,20 +1,29 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Box, Typography, Grid, Button } from "@mui/material";
+import "./no-page-found.css";
 
 const NoPageFound = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
+        display: "grid",
+        placeItems: "center",
         height: "100vh",
-        background: "linear-gradient(45deg, #37003C, #001261)",
+        background:
+          "linear-gradient(98.5deg,#00f0ff -46.16%,#7367ff 42.64%,#963cff 70.3%)",
         textAlign: "center",
         color: "#fff",
       }}
     >
-      <Typography variant="h1" sx={{ fontWeight: 700 }}>
-        404
-      </Typography>
-      <Typography variant="h6">OOPS! PAGE NOT FOUND.</Typography>
+      <Grid className="no-page-found">
+        <img src="/404robot.svg" alt="" style={{ width: "250px" }} />
+        <Typography variant="h5">Oops! Page not found.</Typography>
+        <Button variant="contained" sx={{ m: 1 }} onClick={() => navigate("/")}>
+          go back to home page
+        </Button>
+      </Grid>
     </Box>
   );
 };

@@ -1,11 +1,10 @@
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./header.css";
-import { Typography } from "@mui/material";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 const Header = () => {
