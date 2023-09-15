@@ -136,50 +136,61 @@ const Players = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.data
-                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((item, index) => {
-                  return (
-                    <>
-                      <TableRow key={item._id}>
-                        <TableCell sx={{ padding: "2px" }}>
-                          {page * 10 + index + 1}
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          <img
-                            src={item.playerImage}
-                            alt=""
-                            style={{
-                              width: "40px",
-                              height: "40px",
-                              objectFit: "cover",
-                              borderRadius: "50px",
-                            }}
-                          />
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          {item.fullName}
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          {item.position}
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          {item.nationality}
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          {item.dob.split("T")[0]}
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          {item.clubName}
-                        </TableCell>
-                        <TableCell sx={{ padding: "2px" }}>
-                          <PlayerEditForm playerId={item._id} />
-                          <Button>Delete</Button>
-                        </TableCell>
-                      </TableRow>
-                    </>
-                  );
-                })}
+              {data?.data.length === 0 ? (
+                <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  No data found.
+                </Typography>
+              ) : (
+                <>
+                  {data?.data
+                    ?.slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                    .map((item, index) => {
+                      return (
+                        <>
+                          <TableRow key={item._id}>
+                            <TableCell sx={{ padding: "2px" }}>
+                              {page * 10 + index + 1}
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              <img
+                                src={item.playerImage}
+                                alt=""
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  objectFit: "cover",
+                                  borderRadius: "50px",
+                                }}
+                              />
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              {item.fullName}
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              {item.position}
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              {item.nationality}
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              {item.dob.split("T")[0]}
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              {item.clubName}
+                            </TableCell>
+                            <TableCell sx={{ padding: "2px" }}>
+                              <PlayerEditForm playerId={item._id} />
+                              <Button>Delete</Button>
+                            </TableCell>
+                          </TableRow>
+                        </>
+                      );
+                    })}
+                </>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

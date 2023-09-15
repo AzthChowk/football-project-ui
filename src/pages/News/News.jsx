@@ -1,6 +1,6 @@
 import React from "react";
-import NewsCard from "../components/News/NewsCard";
-import "../styles/news.css";
+import NewsCard from "../../components/News/NewsCard";
+import "./news.css";
 import { Link } from "react-router-dom";
 
 const News = () => {

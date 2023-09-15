@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
@@ -16,14 +16,21 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { Formik } from "formik";
-import React, { useState } from "react";
 import * as Yup from "yup";
 import { $axios } from "../../../lib/axios";
 import { countries } from "../Countries.js";
 
-import { useEffect } from "react";
-import "./add-player-form.css";
 import { Typography } from "@mui/material";
+import { useEffect } from "react";
+
+// react -query
+import { useMutation } from "react-query";
+
+import "./add-player-form.css";
+import { addPlayer } from "../../../lib/apis/players-apis";
+import { useDispatch } from "react-redux";
+import { openSuccessSnackbar } from "../../redux-store/snackbarSlice";
+import { useNavigate } from "react-router-dom";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -50,6 +57,20 @@ export default function PlayerAddForm() {
   const [age, setAge] = React.useState("");
   const [teams, setTeams] = useState([]);
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  //add player
+
+  const addPlayerMutation = useMutation({
+    mutationKey: ["add-player"],
+    mutationFn: (values) => addPlayer(values),
+    onSuccess: (res) => {
+      dispatch(openSuccessSnackbar(res?.data?.message));
+      navigate("/admin/players");
+      handleClose();
+    },
+  });
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -136,15 +157,7 @@ export default function PlayerAddForm() {
             ),
           })}
           onSubmit={async (values) => {
-            console.log(values);
-            try {
-              await $axios.post("/player/create", values);
-              console.log("Player updated successfully.");
-              setSuccess(true);
-            } catch (error) {
-              setFailed(true);
-              console.log(error.message, "Cannot update player.");
-            }
+            addPlayerMutation.mutate(values);
           }}
         >
           {(formik) => (

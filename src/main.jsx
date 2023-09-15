@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./index.css";
-import HomePageRoot from "./pages/LandingPage/HomePageRoot";
-import HomePage from "./pages/LandingPage/HomePage";
-import Teams from "./pages/Teams";
-import News from "./pages/News";
-import Players from "./pages/Players/Players";
 import Login from "../src/components/Login/Login";
+import "./index.css";
+import HomePage from "./pages/LandingPage/HomePage";
+import HomePageRoot from "./pages/LandingPage/HomePageRoot";
+import News from "./pages/News/News";
+import Players from "./pages/Players/Players";
+import Teams from "./pages/Teams";
 
 //query client
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
@@ -23,10 +23,14 @@ import DashboardIndex from "./pages/DashBoard/DashBoardIndex";
 import DashboardRoot from "./pages/DashBoard/DashboardRoot";
 import DashboardPlayers from "./pages/DashBoard/Players"; // renamed from players
 import DashboardTeams from "./pages/DashBoard/Teams";
-import FixturePage from "./pages/fixture-page/FixturePage";
-import Result from "./pages/Result/Result";
-import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
 import NoPageFound from "./pages/NoPageFound/NoPageFound";
+import Result from "./pages/Result/Result";
+import FixturePage from "./pages/fixture-page/FixturePage";
+import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
+import DashboardNews from "./pages/DashBoard/DashboardNews";
+import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
+import DashboardResults from "./pages/DashBoard/DashboardResults";
+import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +83,22 @@ const router = createBrowserRouter([
       {
         path: "teams",
         element: <DashboardTeams />,
+      },
+      {
+        path: "news",
+        element: <DashboardNews />,
+      },
+      {
+        path: "fixtures",
+        element: <DashboardFixtures />,
+      },
+      {
+        path: "results",
+        element: <DashboardResults />,
+      },
+      {
+        path: "pointtable",
+        element: <DashboardPtTbl />,
       },
     ],
   },

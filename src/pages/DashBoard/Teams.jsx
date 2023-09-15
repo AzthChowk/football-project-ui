@@ -120,38 +120,52 @@ const Teams = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.data?.map((item, index) => {
-                return (
-                  <>
-                    <TableRow key={item._id}>
-                      <TableCell sx={{ padding: "2px" }}>{index + 1}</TableCell>
-                      <TableCell sx={{ padding: "2px" }}>
-                        <img
-                          src={item.logo}
-                          alt=""
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            objectFit: "cover",
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell sx={{ padding: "2px" }}>{item.name}</TableCell>
-                      <TableCell sx={{ padding: "2px" }}>
-                        {item.manager}
-                      </TableCell>
-                      <TableCell sx={{ padding: "2px" }}>
-                        {item.coach}
-                      </TableCell>
-                      <TableCell sx={{ padding: "2px" }}>{item.url}</TableCell>
-                      <TableCell>
-                        <Button>Edit</Button>
-                        <Button>Delete</Button>
-                      </TableCell>
-                    </TableRow>
-                  </>
-                );
-              })}
+              {data?.data.length === 0 ? (
+                <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  No data found.
+                </Typography>
+              ) : (
+                <>
+                  {data?.data?.map((item, index) => {
+                    return (
+                      <>
+                        <TableRow key={item._id}>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {index + 1}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            <img
+                              src={item.logo}
+                              alt=""
+                              style={{
+                                width: "50px",
+                                height: "50px",
+                                objectFit: "cover",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.name}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.manager}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.coach}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.url}
+                          </TableCell>
+                          <TableCell>
+                            <Button>Edit</Button>
+                            <Button>Delete</Button>
+                          </TableCell>
+                        </TableRow>
+                      </>
+                    );
+                  })}
+                </>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

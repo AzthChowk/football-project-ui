@@ -23,6 +23,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import CustomSnackbar from "../../components/CustomUi/CustomSnackBar";
 
 const DashboardRoot = () => {
   const [expand, setExpand] = React.useState(true);
@@ -50,6 +51,7 @@ const DashboardRoot = () => {
   };
   return (
     <Box>
+      <CustomSnackbar />
       <Box
         sx={{
           height: "100vh",
@@ -175,28 +177,34 @@ const DashboardRoot = () => {
         <nav>
           <List>
             <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ScheduleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Fixtures" />
-              </ListItemButton>
+              <Link to="fixtures">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <ScheduleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Fixtures" />
+                </ListItemButton>
+              </Link>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <WorkspacePremiumIcon />
-                </ListItemIcon>
-                <ListItemText primary="Results" />
-              </ListItemButton>
+              <Link to="results">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <WorkspacePremiumIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Results" />
+                </ListItemButton>
+              </Link>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <TableRowsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Point Table" />
-              </ListItemButton>
+              <Link to="pointtable">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <TableRowsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Point Table" />
+                </ListItemButton>
+              </Link>
             </ListItem>
           </List>
         </nav>
@@ -204,12 +212,14 @@ const DashboardRoot = () => {
         <nav>
           <List>
             <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ArticleIcon />
-                </ListItemIcon>
-                <ListItemText primary="News" />
-              </ListItemButton>
+              <Link to="news">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <ArticleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="News" />
+                </ListItemButton>
+              </Link>
             </ListItem>
           </List>
         </nav>
