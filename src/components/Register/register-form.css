@@ -1,0 +1,12 @@
+.register-form {
+  vertical-align: middle;
+  margin: auto;
+  width: 50%;
+}
+.register-form img {
+  align-items: center;
+  vertical-align: middle;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}

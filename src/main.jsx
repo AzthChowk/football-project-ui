@@ -31,6 +31,7 @@ import DashboardNews from "./pages/DashBoard/DashboardNews";
 import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
 import DashboardResults from "./pages/DashBoard/DashboardResults";
 import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
+import Register from "./components/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "fixtures",
         element: <FixturePage />,
+      },
+      {
+        path: "login/register",
+        element: <Register />,
       },
     ],
   },

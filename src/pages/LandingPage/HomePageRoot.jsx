@@ -1,16 +1,19 @@
 import React from "react";
 import Header from "../../layouts/Header";
 import { Outlet } from "react-router-dom";
+import { Box } from "@mui/material";
+import CustomSnackbar from "../../components/CustomUi/CustomSnackBar";
 
 const HomePageRoot = () => {
   return (
     <>
-      <div>
+      <CustomSnackbar />
+      <Box>
         <Header />
-      </div>
-      <div>
+      </Box>
+      <Box>
         <Outlet />
-      </div>
+      </Box>
     </>
   );
 };

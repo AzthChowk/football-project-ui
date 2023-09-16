@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
+import React, { useState } from "react";
 
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -17,7 +17,6 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { $axios } from "../../../lib/axios";
 import { countries } from "../Countries.js";
 
 import { Typography } from "@mui/material";
@@ -26,11 +25,11 @@ import { useEffect } from "react";
 // react -query
 import { useMutation } from "react-query";
 
-import "./add-player-form.css";
-import { addPlayer } from "../../../lib/apis/players-apis";
 import { useDispatch } from "react-redux";
-import { openSuccessSnackbar } from "../../redux-store/snackbarSlice";
 import { useNavigate } from "react-router-dom";
+import { addPlayer } from "../../../lib/apis/players-apis";
+import { openSuccessSnackbar } from "../../redux-store/snackbarSlice";
+import "./add-player-form.css";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {

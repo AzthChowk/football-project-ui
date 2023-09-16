@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Formik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import * as Yup from "yup";
@@ -71,7 +71,9 @@ const Login = () => {
               </Box>
               <Box>
                 <Button type="submit">Log In</Button>
-                <Typography>No Account? Create one</Typography>
+                <Link to="register">
+                  <Typography>No Account? Create one</Typography>
+                </Link>
               </Box>
             </form>
           )}
