@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 // MUI Table
 import { Box, Grid, Typography } from "@mui/material";
@@ -20,6 +20,7 @@ import { alpha, styled } from "@mui/material/styles";
 import { getPlayersList } from "../../../lib/apis/players-apis";
 import PlayerAddForm from "../../components/Player/PlayerAddForm";
 import PlayerEditForm from "../../components/Player/PlayerEditForm";
+import SummaryCard from "../../components/SummaryCard";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -63,10 +64,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Players = () => {
+  const queryClient = useQueryClient();
   // react - query
   const { isLoading, isSuccess, isError, error, data } = useQuery({
     queryKey: ["players-data"],
     queryFn: () => getPlayersList(),
+    onSuccess: (res) => {},
   });
 
   const [page, setPage] = React.useState(0);
@@ -84,24 +87,14 @@ const Players = () => {
   return (
     <>
       <Box sx={{ padding: "10px 0" }}>
-        <Grid
-          sx={{
-            borderRadius: "5px",
-            padding: "20px",
-            backgroundColor: "#337CCF",
-            width: "fit-content",
-          }}
-        >
-          <Typography variant="h6" sx={{ color: "#fff" }}>
-            TOTAL PLAYERS
-          </Typography>
-          <Typography variant="h2" sx={{ fontWeight: 700, color: "#fff" }}>
-            {data?.data?.length}
-          </Typography>
+        <Grid container sx={{ display: "flex", padding: "10px", gap: "10px" }}>
+          <SummaryCard title="Total Players" count={data?.data.length} />
         </Grid>
+        <Divider />
+
         <Grid
           sx={{
-            padding: "10px 0",
+            padding: "10px",
             display: "flex",
             justifyContent: "flex-start",
           }}
@@ -120,12 +113,12 @@ const Players = () => {
         </Grid>
       </Box>
       <Divider />
-      <Box>
+      <Box sx={{ padding: 1 }}>
         <TableContainer>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>SN</TableCell>
+                <TableCell align="center">SN</TableCell>
                 <TableCell>Image</TableCell>
                 <TableCell>Player's Name</TableCell>
                 <TableCell>Position</TableCell>
@@ -151,12 +144,12 @@ const Players = () => {
                       return (
                         <>
                           <TableRow key={item._id}>
-                            <TableCell sx={{ padding: "2px" }}>
+                            <TableCell align="center">
                               {page * 10 + index + 1}
                             </TableCell>
                             <TableCell sx={{ padding: "2px" }}>
                               <img
-                                src={item.playerImage}
+                                src={item.playerImageUrl}
                                 alt=""
                                 style={{
                                   width: "40px",

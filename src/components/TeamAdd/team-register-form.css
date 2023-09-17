@@ -1,10 +1,10 @@
-.team-form-register {
-  width: 500px;
+.form-fields {
+  width: 600px;
+  padding: 20px;
 }
 .add-team-form-fields {
-  margin: 20px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  box-sizing: border-box;
+  padding: 10px;
+}
+.team-add-forms {
+  padding: 10px 0;
 }

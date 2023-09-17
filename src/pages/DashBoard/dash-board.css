@@ -16,3 +16,8 @@
 .dashboard-sidebar li {
   padding: 10px;
 }
+.active {
+  color: rgb(255, 255, 255);
+  background-color: #999;
+  width: 100%;
+}

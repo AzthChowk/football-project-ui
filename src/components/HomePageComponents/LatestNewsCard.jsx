@@ -18,9 +18,9 @@ const LatestNewsCard = ({ newsImgUrl, newsTitle, newsHighlights }) => {
       </Grid>
       <Grid sx={{ padding: 0.25 }}>
         <Typography sx={{ fontWeight: 700, padding: "5px 0" }}>
-          {newsTitle}
+          {newsTitle.slice(0, 50)}..
         </Typography>
-        <Typography>{newsHighlights}</Typography>
+        <Typography>{newsHighlights.slice(0, 100)}..</Typography>
         <Button
           variant="contained"
           sx={{

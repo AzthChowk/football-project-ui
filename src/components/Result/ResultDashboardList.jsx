@@ -10,7 +10,7 @@ import { Typography } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import ResultCard from "../../components/Result/ResultCard";
 
-const Result = () => {
+const ResultDashboardList = () => {
   const [result, setResult] = useState([]);
 
   const { isLoading, isError, data, error } = useQuery({
@@ -22,9 +22,9 @@ const Result = () => {
   console.log(id);
 
   return (
-    <Box className="container">
-      <Typography variant="h2" sx={{ margin: 2 }}>
-        Results
+    <Box sx={{ paddingRight: 2 }}>
+      <Typography variant="h6" sx={{ padding: "10px", fontWeight: 700 }}>
+        Match Results
       </Typography>
 
       {data?.data?.map((item, index) => {
@@ -38,4 +38,4 @@ const Result = () => {
   );
 };
 
-export default Result;
+export default ResultDashboardList;

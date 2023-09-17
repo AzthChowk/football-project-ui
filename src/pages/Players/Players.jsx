@@ -80,7 +80,7 @@ const Players = () => {
               {players.map((item) => (
                 <StyledTableRow key={item._id}>
                   <StyledTableCell>
-                    <img src={item.playerImage} alt="" />
+                    <img src={item.playerImageUrl} alt="" />
                   </StyledTableCell>
                   <StyledTableCell>
                     <h3>{item.fullName}</h3>

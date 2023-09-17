@@ -1,6 +1,6 @@
 import { Box, List } from "@mui/material";
 import React from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./dash-board.css";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -23,6 +23,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import AddLinkIcon from "@mui/icons-material/AddLink";
+
 import CustomSnackbar from "../../components/CustomUi/CustomSnackBar";
 
 const DashboardRoot = () => {
@@ -57,27 +59,33 @@ const DashboardRoot = () => {
           height: "100vh",
           width: "240px",
           position: "fixed",
-          bgcolor: "background.paper",
+          bgcolor: "#F1EFEF",
+          color: "#000",
         }}
       >
-        <nav aria-label="main mailbox folders">
+        <nav>
           <List>
             <ListItem disablePadding>
               <Avatar
                 alt="Cindy Baker"
-                src="https://img.freepik.com/free-photo/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg?w=2000"
+                src="https://i.pinimg.com/originals/df/25/e3/df25e39d7400f1bbcb7adf695063faaa.jpg"
                 sx={{ width: 56, height: 56, margin: "20px" }}
               />
             </ListItem>
             <ListItem disablePadding>
-              <Link to="/admin">
+              <NavLink
+                to="/admin"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary="Dashboard" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton>
@@ -152,24 +160,34 @@ const DashboardRoot = () => {
         <nav>
           <List>
             <ListItem disablePadding>
-              <Link to="teams">
+              <NavLink
+                to="teams"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <GroupsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Teams" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
             </ListItem>
             <ListItem disablePadding>
-              <Link to="players">
+              <NavLink
+                to="players"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <PersonIcon />
                   </ListItemIcon>
                   <ListItemText primary="Players" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
             </ListItem>
           </List>
         </nav>
@@ -177,34 +195,49 @@ const DashboardRoot = () => {
         <nav>
           <List>
             <ListItem disablePadding>
-              <Link to="fixtures">
+              <NavLink
+                to="fixtures"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <ScheduleIcon />
                   </ListItemIcon>
                   <ListItemText primary="Fixtures" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
             </ListItem>
             <ListItem disablePadding>
-              <Link to="results">
+              <NavLink
+                to="results"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <WorkspacePremiumIcon />
                   </ListItemIcon>
                   <ListItemText primary="Results" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
             </ListItem>
             <ListItem disablePadding>
-              <Link to="pointtable">
+              <NavLink
+                to="pointtable"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <TableRowsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Point Table" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
             </ListItem>
           </List>
         </nav>
@@ -212,19 +245,39 @@ const DashboardRoot = () => {
         <nav>
           <List>
             <ListItem disablePadding>
-              <Link to="news">
+              <NavLink
+                to="news"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <ArticleIcon />
                   </ListItemIcon>
                   <ListItemText primary="News" />
                 </ListItemButton>
-              </Link>
+              </NavLink>
+            </ListItem>
+            <ListItem disablePadding>
+              <NavLink
+                to="addnews"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddLinkIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Add news" />
+                </ListItemButton>
+              </NavLink>
             </ListItem>
           </List>
         </nav>
       </Box>
-      <Box sx={{ paddingLeft: "275px" }}>
+      <Box sx={{ paddingLeft: "260px" }}>
         <Outlet />
       </Box>
     </Box>

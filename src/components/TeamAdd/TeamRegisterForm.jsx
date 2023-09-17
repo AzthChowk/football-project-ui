@@ -6,12 +6,20 @@ import { styled } from "@mui/material/styles";
 
 import { AiOutlineClose } from "react-icons/ai";
 
-import Box from "@mui/material/Box";
+import { Box, Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { Stack } from "@mui/system";
 import { Formik } from "formik";
 import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { $axios } from "../../../lib/axios";
+import { addTeam } from "../../../lib/apis/teams-apis";
+import {
+  openErrorSnackbar,
+  openSuccessSnackbar,
+} from "../../redux-store/snackbarSlice";
 import "./team-register-form.css";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -31,6 +39,23 @@ export default function CustomizedDialogs() {
   const [age, setAge] = React.useState("");
   const [teams, setTeams] = useState([]);
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [localUrl, setLocalUrl] = useState(null);
+  const [teamImage, setTeamImage] = useState(null);
+
+  const addTeamMutation = useMutation({
+    mutationKey: ["add-team"],
+    mutationFn: (values) => addTeam(values),
+    onSuccess: (response) => {
+      dispatch(openSuccessSnackbar(response?.data?.message));
+      handleClose();
+    },
+    onError: (error) => {
+      dispatch(openErrorSnackbar(error?.data?.message));
+    },
+  });
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -75,92 +100,95 @@ export default function CustomizedDialogs() {
         {/* ------------ Formik--------- */}
         <Formik
           initialValues={{
-            name: "",
-            logo: "",
+            teamName: "",
             address: "",
             url: "",
             manager: "",
             coach: "",
           }}
           validationSchema={Yup.object({
-            name: Yup.string().required("Club name is required."),
-            logo: Yup.string().required("Club logo is required."),
+            teamName: Yup.string().required("Team name is required."),
             address: Yup.string().required("Club Address is required."),
             url: Yup.string().required(false),
             manager: Yup.string().required("Manager's name is required."),
             coach: Yup.string().required("Coach's name is required."),
           })}
           onSubmit={async (values) => {
-            console.log(values);
-            try {
-              await $axios.post("/team/create", values);
-              console.log("TEAM CREATED SUCCESSFULLY.");
-              setSuccess(true);
-            } catch (error) {
-              setFailed(true);
-              console.log(error.message, "CANNOT CREATE TEAM");
+            let imageUr = "";
+
+            //playerImage is image that we take as input
+            if (teamImage) {
+              console.log("teamImg here", teamImage);
+              //dmtrulbdo - cloudname from cloudinary
+              const cloudName = "dmtrulbd0";
+              // creates form data object
+              const data = new FormData();
+              data.append("file", teamImage);
+              data.append("upload_preset", "easterfc");
+              data.append("cloud_name", cloudName);
+              console.log("data here", data);
+
+              try {
+                const res = await axios.post(
+                  `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+                  data
+                );
+                console.log("res here", res);
+
+                imageUr = res.data.secure_url;
+              } catch (error) {
+                dispatch(openErrorSnackbar("Image upload failed."));
+              }
             }
+            // this is where we store the image as url - check database model - name same
+            values.teamLogo = imageUr;
+            addTeamMutation.mutate(values);
           }}
         >
           {(formik) => (
             <form onSubmit={formik.handleSubmit}>
-              <Box className="add-team-form-fields">
-                <Box sx={{ width: "100%" }}>
+              <Box className="form-fields">
+                <Grid className="team-add-forms">
                   <TextField
                     sx={{ width: "100%" }}
                     required
                     label="Team Name"
-                    name="name"
-                    {...formik.getFieldProps("name")}
+                    name="teamName"
+                    {...formik.getFieldProps("teamName")}
                   />
-                  {formik.touched.name && formik.errors.name ? (
-                    <div>{formik.errors.name}</div>
+                  {formik.touched.teamName && formik.errors.teamName ? (
+                    <div>{formik.errors.teamName}</div>
                   ) : null}
-                </Box>
-              </Box>
+                </Grid>
 
-              <Box className="add-team-form-fields">
-                <Box sx={{ width: "50%" }}>
-                  <TextField
-                    sx={{ width: "100%" }}
-                    required
-                    label="Manager"
-                    name="manager"
-                    {...formik.getFieldProps("manager")}
-                  />
-                  {formik.touched.manager && formik.errors.manager ? (
-                    <div>{formik.errors.manager}</div>
-                  ) : null}
-                </Box>
-                <Box sx={{ width: "50%" }}>
-                  <TextField
-                    required
-                    sx={{ width: "100%" }}
-                    label="Coach"
-                    name="coach"
-                    {...formik.getFieldProps("coach")}
-                  />
-                  {formik.touched.coach && formik.errors.coach ? (
-                    <div>{formik.errors.coach}</div>
-                  ) : null}
-                </Box>
-              </Box>
-              <Box className="add-team-form-fields">
-                <Box sx={{ width: "100%" }}>
-                  <TextField
-                    required
-                    sx={{ width: "100%" }}
-                    label="Upload the Team Logo"
-                    name="logo"
-                    {...formik.getFieldProps("logo")}
-                  />
-                  {formik.touched.logo && formik.errors.logo ? (
-                    <div>{formik.errors.logo}</div>
-                  ) : null}
-                </Box>
-              </Box>
-              <Box className="add-team-form-fields">
-                <Box sx={{ width: "100%" }}>
+                <Grid container spacing={2} className="team-add-forms">
+                  <Grid item sm={6}>
+                    <TextField
+                      sx={{ width: "100%" }}
+                      required
+                      label="Manager"
+                      name="manager"
+                      {...formik.getFieldProps("manager")}
+                    />
+                    {formik.touched.manager && formik.errors.manager ? (
+                      <div>{formik.errors.manager}</div>
+                    ) : null}
+                  </Grid>
+                  <Grid item sm={6}>
+                    <TextField
+                      required
+                      sx={{ width: "100%" }}
+                      label="Coach"
+                      name="coach"
+                      {...formik.getFieldProps("coach")}
+                    />
+                    {formik.touched.coach && formik.errors.coach ? (
+                      <div>{formik.errors.coach}</div>
+                    ) : null}
+                  </Grid>
+                </Grid>
+
+                <Grid className="team-add-forms">
                   <TextField
                     required
                     sx={{ width: "100%" }}
@@ -171,10 +199,9 @@ export default function CustomizedDialogs() {
                   {formik.touched.address && formik.errors.address ? (
                     <div>{formik.errors.address}</div>
                   ) : null}
-                </Box>
-              </Box>
-              <Box className="add-team-form-fields">
-                <Box sx={{ width: "100%" }}>
+                </Grid>
+
+                <Grid className="team-add-forms">
                   <TextField
                     required
                     sx={{ width: "100%" }}
@@ -185,10 +212,39 @@ export default function CustomizedDialogs() {
                   {formik.touched.url && formik.errors.url ? (
                     <div>{formik.errors.url}</div>
                   ) : null}
-                </Box>
-              </Box>
-              <Box>
-                <Box sx={{ margin: "20px" }}>
+                </Grid>
+                <Grid>
+                  <Grid sx={{ width: "100%" }}>
+                    {localUrl && (
+                      <img
+                        src={localUrl}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "contain",
+                          border: "1px solid #999",
+                          borderRadius: "5px",
+                        }}
+                      />
+                    )}
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                      <Button variant="outlined" component="label">
+                        Upload Team Logo
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                          onChange={(event) => {
+                            const teamImage = event.target.files[0];
+                            setLocalUrl(URL.createObjectURL(teamImage));
+                            setTeamImage(teamImage);
+                          }}
+                        />
+                      </Button>
+                    </Stack>
+                  </Grid>
+                </Grid>
+                <Grid sx={{ mt: 2 }}>
                   <Button
                     type="submit"
                     variant="contained"
@@ -204,7 +260,7 @@ export default function CustomizedDialogs() {
                   >
                     Cancel
                   </Button>
-                </Box>
+                </Grid>
               </Box>
             </form>
           )}

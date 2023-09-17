@@ -28,9 +28,9 @@ const HomePage = () => {
   });
 
   return (
-    <Box className="container">
+    <Box className="container" sx={{ padding: 1 }}>
       <Grid container sx={{ padding: "10px" }}>
-        <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Grid item xs={12} sm={12} md={8} lg={8} xl={8} sx={{ p: 2 }}>
           <Grid>
             <FeaturedNews />
           </Grid>
@@ -71,7 +71,7 @@ const HomePage = () => {
         </Grid>
 
         {/* ============ right section matches============== */}
-        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+        <Grid item xs={12} sm={12} md={4} lg={4} xl={4} sx={{ p: 2 }}>
           <Grid
             sx={{ border: "1px solid #37003C", borderRadius: "10px", mb: 4 }}
           >

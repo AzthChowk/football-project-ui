@@ -2,13 +2,14 @@ import Box from "@mui/material/Box/Box";
 import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./register-form.css";
 
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { useMutation } from "react-query";
-import { addAdmin } from "../../../lib/apis/admin-apis";
 import { useDispatch } from "react-redux";
+import { addAdmin } from "../../../lib/apis/admin-apis";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
@@ -16,11 +17,13 @@ import {
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const addAdminMutation = useMutation({
     mutationKey: ["add-admin"],
     mutationFn: (values) => addAdmin(values),
     onSuccess: (response) => {
+      navigate("/login");
       dispatch(openSuccessSnackbar(response?.data?.message));
     },
     onError: (response) => {
@@ -33,28 +36,49 @@ const Register = () => {
     },
   });
   return (
-    <Box className="container" sx={{ padding: 1, margin: "auto" }}>
-      <Grid container sx={{ mt: 2 }}>
+    <Box className="register-page" sx={{ padding: 1 }}>
+      <Grid container className="container user-register">
         {/* ===== Grid left ===== */}
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}></Grid>
-
-        {/* =======Grid -Right ================ */}
         <Grid
+          className="user-register-lft"
           item
           xs={12}
           sm={12}
           md={6}
           lg={6}
           xl={6}
+        >
+          <Typography
+            variant="h4"
+            sx={{ fontWeight: 900, mt: 2, textTransform: "uppercase" }}
+          >
+            Register
+          </Typography>
+          <img
+            src="/404robot.svg"
+            alt=""
+            style={{ width: "55%" }}
+            className="center"
+          />
+        </Grid>
+
+        {/* =======Grid -Right ================ */}
+        <Grid
+          item
+          className="user-register-rgt"
+          xs={12}
+          sm={12}
+          md={6}
+          lg={6}
+          xl={6}
           sx={{
-            mt: "6%",
             padding: 2,
             borderRadius: "5px",
             boxShadow: "rgba(0, 0, 0, 0.1) -4px 9px 25px -6px",
           }}
         >
           <Typography variant="h5" sx={{ fontWeight: 700, padding: 1 }}>
-            Register
+            Fill up the details.
           </Typography>
           <Formik
             initialValues={{
@@ -226,6 +250,11 @@ const Register = () => {
               </form>
             )}
           </Formik>
+          <Link to="/login">
+            <Typography sx={{ padding: 1 }}>
+              Already have an account. Login here
+            </Typography>
+          </Link>
         </Grid>
       </Grid>
     </Box>

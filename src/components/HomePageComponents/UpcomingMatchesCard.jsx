@@ -56,7 +56,7 @@ const UpcomingMatchesCard = ({
       <Typography sx={{ fontSize: "10pt" }}>
         GMT - {time}, {playGround}
       </Typography>
-      <Divider variant="middle" />
+      <Divider variant="middle" sx={{ width: "75%", margin: "auto" }} />
     </Grid>
   );
 };

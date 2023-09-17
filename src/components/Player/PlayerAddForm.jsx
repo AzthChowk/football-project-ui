@@ -19,16 +19,19 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { countries } from "../Countries.js";
 
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
 
 // react -query
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addPlayer } from "../../../lib/apis/players-apis";
-import { openSuccessSnackbar } from "../../redux-store/snackbarSlice";
+import {
+  openErrorSnackbar,
+  openSuccessSnackbar,
+} from "../../redux-store/snackbarSlice";
 import "./add-player-form.css";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -58,6 +61,9 @@ export default function PlayerAddForm() {
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [localUrl, setLocalUrl] = useState(null);
+  const [playerImage, setPlayerImage] = useState(null);
+  const queryClient = useQueryClient();
 
   //add player
 
@@ -68,6 +74,9 @@ export default function PlayerAddForm() {
       dispatch(openSuccessSnackbar(res?.data?.message));
       navigate("/admin/players");
       handleClose();
+    },
+    onError: (res) => {
+      dispatch(openErrorSnackbar(res?.data?.message));
     },
   });
 
@@ -129,9 +138,8 @@ export default function PlayerAddForm() {
         <Formik
           initialValues={{
             firstName: "",
-            middleName: " ",
+            middleName: "",
             lastName: "",
-            playerImage: "",
             position: "",
             dob: "",
             nationality: "",
@@ -141,11 +149,10 @@ export default function PlayerAddForm() {
             firstName: Yup.string()
               .max(15, "Must be 15 characters or less")
               .required("Player's first name is required."),
-            middleName: Yup.string().required(false).nullable(true),
+            middleName: Yup.string().nullable(),
             lastName: Yup.string()
               .max(20, "Must be 20 characters or less")
               .required("Player's last name is required."),
-            playerImage: Yup.string().required("Please upload player's image."),
             position: Yup.string().required("Player position is required."),
             dob: Yup.date().required("Player's date of birth is required."),
             nationality: Yup.string().required(
@@ -156,6 +163,33 @@ export default function PlayerAddForm() {
             ),
           })}
           onSubmit={async (values) => {
+            let imageUrl = "";
+
+            //playerImage is image that we take as input
+            if (playerImage) {
+              //dmtrulbdo - cloudname from cloudinary
+              const cloudName = "dmtrulbd0";
+              // creates form data object
+              const data = new FormData();
+              data.append("file", playerImage);
+              data.append("upload_preset", "vcyz8tr5");
+              data.append("cloud_name", cloudName);
+              console.log("data here", data);
+
+              try {
+                const res = await axios.post(
+                  `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+                  data
+                );
+                console.log("res here", res);
+
+                imageUrl = res.data.secure_url;
+              } catch (error) {
+                dispatch(openErrorSnackbar("Image upload failed."));
+              }
+            }
+            // this is where we store the image as url - check database model - name same
+            values.playerImageUrl = imageUrl;
             addPlayerMutation.mutate(values);
           }}
         >
@@ -202,22 +236,6 @@ export default function PlayerAddForm() {
                 </Box>
               </Box>
 
-              <Box className="add-player-form-field">
-                <Box sx={{ width: "100%" }}>
-                  <TextField
-                    required
-                    sx={{ width: "100%" }}
-                    type="text"
-                    label="Player Image"
-                    variant="outlined"
-                    name="playerImage"
-                    {...formik.getFieldProps("playerImage")}
-                  />
-                  {formik.touched.playerImage && formik.errors.playerImage ? (
-                    <div>{formik.errors.playerImage}</div>
-                  ) : null}
-                </Box>
-              </Box>
               <Box className="add-player-form-field">
                 <Box sx={{ width: "50%" }}>
                   <FormControl fullWidth>
@@ -314,7 +332,7 @@ export default function PlayerAddForm() {
                       {teams.map((item) => {
                         return (
                           <MenuItem key={item._id} value={item._id}>
-                            <h4>{item.name}</h4>
+                            <h4>{item.teamName}</h4>
                           </MenuItem>
                         );
                       })}
@@ -323,6 +341,37 @@ export default function PlayerAddForm() {
                   {formik.touched.currentClub && formik.errors.currentClub ? (
                     <div>{formik.errors.currentClub}</div>
                   ) : null}
+                </Box>
+              </Box>
+              <Box className="add-player-form-field">
+                <Box sx={{ width: "100%" }}>
+                  {localUrl && (
+                    <img
+                      src={localUrl}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "contain",
+                        border: "1px solid #999",
+                        borderRadius: "5px",
+                      }}
+                    />
+                  )}
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Button variant="outlined" component="label">
+                      Upload Player Image
+                      <input
+                        hidden
+                        accept="image/*"
+                        type="file"
+                        onChange={(event) => {
+                          const playerImage = event.target.files[0];
+                          setLocalUrl(URL.createObjectURL(playerImage));
+                          setPlayerImage(playerImage);
+                        }}
+                      />
+                    </Button>
+                  </Stack>
                 </Box>
               </Box>
               <Box sx={{ margin: "20px" }}>

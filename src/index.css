@@ -6,6 +6,9 @@
   box-sizing: border-box;
   font-family: "Nunito sans", sans-serif !important;
 }
+#root {
+  margin: auto;
+}
 body {
   color: #37003c;
 }
@@ -27,4 +30,12 @@ button:hover {
 .container {
   max-width: 1536px;
   margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+a:hover {
+  width: 100%;
 }

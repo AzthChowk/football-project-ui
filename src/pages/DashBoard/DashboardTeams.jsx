@@ -19,6 +19,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import SummaryCard from "../../components/SummaryCard";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -70,24 +71,13 @@ const Teams = () => {
   return (
     <Box>
       <Box sx={{ padding: "10px 0" }}>
-        <Grid
-          sx={{
-            borderRadius: "5px",
-            padding: "20px",
-            backgroundColor: "#337CCF",
-            width: "fit-content",
-          }}
-        >
-          <Typography variant="h6" sx={{ color: "#fff" }}>
-            TOTAL TEAMS
-          </Typography>
-          <Typography variant="h2" sx={{ fontWeight: 700, color: "#fff" }}>
-            {data?.data?.length}
-          </Typography>
+        <Grid container sx={{ display: "flex", padding: "10px", gap: "10px" }}>
+          <SummaryCard title="Total Teams" count={data?.data?.length} />
         </Grid>
+
         <Grid
           sx={{
-            padding: "10px 0",
+            padding: "10px",
             display: "flex",
             justifyContent: "flex-start",
           }}
@@ -105,13 +95,13 @@ const Teams = () => {
           </Search>
         </Grid>
       </Box>
-      <Box>
+      <Box sx={{ padding: 1 }}>
         <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>SN</TableCell>
-                <TableCell>Logo</TableCell>
+                <TableCell align="center">SN</TableCell>
+                <TableCell>Team Logo</TableCell>
                 <TableCell>Club Name</TableCell>
                 <TableCell>Manager</TableCell>
                 <TableCell>Coach</TableCell>
@@ -130,12 +120,10 @@ const Teams = () => {
                     return (
                       <>
                         <TableRow key={item._id}>
-                          <TableCell sx={{ padding: "2px" }}>
-                            {index + 1}
-                          </TableCell>
-                          <TableCell sx={{ padding: "2px" }}>
+                          <TableCell align="center">{index + 1}</TableCell>
+                          <TableCell>
                             <img
-                              src={item.logo}
+                              src={item.teamLogo}
                               alt=""
                               style={{
                                 width: "50px",
@@ -145,7 +133,7 @@ const Teams = () => {
                             />
                           </TableCell>
                           <TableCell sx={{ padding: "2px" }}>
-                            {item.name}
+                            {item.teamName}
                           </TableCell>
                           <TableCell sx={{ padding: "2px" }}>
                             {item.manager}

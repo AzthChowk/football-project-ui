@@ -38,11 +38,11 @@ const TeamCard = () => {
     <>
       {error && <h1>Error on getting the data.</h1>}
       {!error &&
-        teams.map(({ _id, name, logo, address, url, manager, coach }) => {
+        teams.map(({ _id, name, teamLogo, address, url, manager, coach }) => {
           return (
             <div key={_id} className="team-card">
               <h3>{name}</h3>
-              <img src={logo} alt={name} />
+              <img src={teamLogo} alt={name} />
               <h5>
                 Address: <strong>{address}</strong>
               </h5>

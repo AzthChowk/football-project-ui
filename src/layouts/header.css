@@ -1,37 +1,50 @@
 .navbar {
+  /* background-color: #fcd7ff; */
   background: linear-gradient(-135deg, #37003c, #001261);
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   color: #fff;
+  /* background-image: url("https://www.seekpng.com/png/detail/70-706758_clip-art-black-and-white-download-ink-vector.png"); */
+  background-blend-mode: darken;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 100%;
+  z-index: 10000;
 }
 
 .top-header-cts {
   border-bottom: 1px solid rgb(206, 206, 206);
-  padding: 5px;
-}
-.top-header-cts i {
-  padding-right: 10px;
-  color: #fff;
+  padding: 10px;
 }
 
 .navbar-menu {
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
+  text-align: center;
 }
 .navbar-menu .logo {
-  padding: 14px 0;
   color: #fff;
+  padding: 10px;
 }
 .navbar-menu ul {
   list-style: none;
   display: flex;
-  justify-content: flex-end;
+  text-align: center;
 }
 .navbar-menu li {
-  padding: 20px 0 0 40px;
+  padding: 10px 20px;
+  text-align: center;
 }
 .navbar-menu a {
+  text-align: center;
   color: #fff;
   text-decoration: none;
-  letter-spacing: 2px;
   font-weight: 300;
+  align-items: center;
+}
+.active {
+  color: rgb(255, 0, 0);
+  background-color: #999;
 }

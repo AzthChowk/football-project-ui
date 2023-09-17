@@ -9,9 +9,33 @@ import { $axios } from "../../../lib/axios";
 
 import "./login.css";
 import { Box, Button, Typography } from "@mui/material";
+import { useMutation } from "react-query";
+import { loginAdmin } from "../../../lib/apis/admin-apis";
+import { useDispatch } from "react-redux";
+import {
+  openErrorSnackbar,
+  openSuccessSnackbar,
+} from "../../redux-store/snackbarSlice";
 const url = "http://localhost:9090/login";
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const loginMutation = useMutation({
+    mutationKey: ["user-login"],
+    mutationFn: (values) => loginAdmin(values),
+    onSuccess: (response) => {
+      console.log(response);
+      localStorage.setItem("accesstoken", response?.data?.accessToken);
+      localStorage.setItem("isLoggedIn", true);
+      dispatch(openSuccessSnackbar(response?.data?.message));
+      navigate("/admin");
+    },
+    onError: (error) => {
+      dispatch(openErrorSnackbar(error?.response?.data?.message));
+    },
+  });
+
   return (
     <Box>
       <Box className="login-card">
@@ -28,17 +52,7 @@ const Login = () => {
               .required("Email is required."),
           })}
           onSubmit={async (values) => {
-            try {
-              const response = await $axios.post("/login", values);
-              // console.log(response);
-              const accesstoken = response.data.accessToken;
-              console.log(response.data.message);
-              localStorage.setItem("accesstoken", accesstoken);
-              const isLoggedIn = localStorage.setItem("isLoggedIn", true);
-              navigate("/admin");
-            } catch (error) {
-              console.log(error.message);
-            }
+            loginMutation.mutate(values);
           }}
         >
           {(formik) => (
@@ -71,7 +85,7 @@ const Login = () => {
               </Box>
               <Box>
                 <Button type="submit">Log In</Button>
-                <Link to="register">
+                <Link to="/register">
                   <Typography>No Account? Create one</Typography>
                 </Link>
               </Box>

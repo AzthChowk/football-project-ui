@@ -47,7 +47,6 @@ const FixtureCard = ({
           sx={{
             fontWeight: 700,
             textTransform: "uppercase",
-            fontFamily: "Dm Sans",
           }}
         >
           {opponentOneName}

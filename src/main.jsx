@@ -19,19 +19,20 @@ import { Provider } from "react-redux";
 import store from "./redux-store/store";
 
 //Dashboard
+import NewsAddForm from "./components/News/NewsAddForm";
+import Register from "./components/Register/Register";
 import DashboardIndex from "./pages/DashBoard/DashBoardIndex";
+import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
+import DashboardNews from "./pages/DashBoard/DashboardNews";
+import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
+import DashboardResults from "./pages/DashBoard/DashboardResults";
 import DashboardRoot from "./pages/DashBoard/DashboardRoot";
-import DashboardPlayers from "./pages/DashBoard/Players"; // renamed from players
-import DashboardTeams from "./pages/DashBoard/Teams";
+import DashboardPlayers from "./pages/DashBoard/DashboardPlayers";
+import DashboardTeams from "./pages/DashBoard/DashboardTeams";
 import NoPageFound from "./pages/NoPageFound/NoPageFound";
 import Result from "./pages/Result/Result";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
-import DashboardNews from "./pages/DashBoard/DashboardNews";
-import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
-import DashboardResults from "./pages/DashBoard/DashboardResults";
-import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
-import Register from "./components/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -64,11 +65,12 @@ const router = createBrowserRouter([
         path: "fixtures",
         element: <FixturePage />,
       },
-      {
-        path: "login/register",
-        element: <Register />,
-      },
     ],
+  },
+  {
+    path: "/register",
+    element: <Register />,
+    errorElement: <NoPageFound />,
   },
   {
     path: "/admin",
@@ -92,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <DashboardNews />,
+      },
+      {
+        path: "addnews",
+        element: <NewsAddForm />,
       },
       {
         path: "fixtures",

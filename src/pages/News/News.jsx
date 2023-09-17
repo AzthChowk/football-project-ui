@@ -8,7 +8,7 @@ const News = () => {
     <div className="container news-page">
       <div className="news-page-header">
         <h1>News</h1>
-        <Link to="/news/add">Add News</Link>
+        {/* <Link to="/news/add">Add News</Link> */}
       </div>
       <div className="news-display-grid">
         <NewsCard />
