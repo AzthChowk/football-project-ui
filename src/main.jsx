@@ -33,6 +33,7 @@ import NoPageFound from "./pages/NoPageFound/NoPageFound";
 import Result from "./pages/Result/Result";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
+import NewsFullDetails from "./components/News/NewsFullDetails";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "news",
         element: <News />,
+      },
+      {
+        path: "news/:id",
+        element: <NewsFullDetails />,
       },
       {
         path: "players",
