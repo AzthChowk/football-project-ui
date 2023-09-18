@@ -3,28 +3,27 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 
-import HomePageRoot from "./pages/LandingPage/HomePageRoot";
-import NoPageFound from "./pages/NoPageFound/NoPageFound";
 import HomePage from "./pages/LandingPage/HomePage";
-import Teams from "./pages/Teams/Teams";
-import News from "./pages/News/News";
-import NewsFullDetails from "./components/News/NewsFullDetails";
-import Players from "./pages/Players/Players";
-import Result from "./pages/Result/Result";
+import HomePageRoot from "./pages/LandingPage/HomePageRoot";
 import LoginPage from "./pages/Login/LoginPage";
-import FixturePage from "./pages/fixture-page/FixturePage";
+import News from "./pages/News/News";
+import NoPageFound from "./pages/NoPageFound/NoPageFound";
+import Players from "./pages/Players/Players";
 import Register from "./pages/Register/Register";
+import Result from "./pages/Result/Result";
+import Teams from "./pages/Teams/Teams";
+import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
 
+import NewsAddForm from "./components/News/NewsAddForm";
 import DashboardIndex from "./pages/DashBoard/DashBoardIndex";
 import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
 import DashboardNews from "./pages/DashBoard/DashboardNews";
+import DashboardPlayers from "./pages/DashBoard/DashboardPlayers";
 import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
 import DashboardResults from "./pages/DashBoard/DashboardResults";
 import DashboardRoot from "./pages/DashBoard/DashboardRoot";
-import DashboardPlayers from "./pages/DashBoard/DashboardPlayers";
 import DashboardTeams from "./pages/DashBoard/DashboardTeams";
-import NewsAddForm from "./components/News/NewsAddForm";
 
 //query client
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -33,6 +32,7 @@ const queryClient = new QueryClient();
 
 // react redux
 import { Provider } from "react-redux";
+import NewsFullDetailsPage from "./pages/News/NewsFullDetailsPage";
 import store from "./redux-store/store";
 
 const router = createBrowserRouter([
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "news/:id",
-        element: <NewsFullDetails />,
+        element: <NewsFullDetailsPage />,
       },
       {
         path: "players",

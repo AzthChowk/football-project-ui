@@ -3,7 +3,7 @@ import { Grid, Typography, Button } from "@mui/material";
 
 const LatestNewsCard = ({ newsImgUrl, newsTitle, newsHighlights }) => {
   return (
-    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} sx={{ padding: 1 }}>
+    <Grid item sx={{ padding: 1 }}>
       <img
         src={newsImgUrl}
         alt=""
