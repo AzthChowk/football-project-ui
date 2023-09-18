@@ -3,13 +3,13 @@ import { Box, Grid, Typography, Button, Divider } from "@mui/material";
 import { useQuery } from "react-query";
 
 //
-import FeaturedNews from "../../components/HomePageComponents/FeaturedNews";
-import UpcomingMatchesCard from "../../components/HomePageComponents/UpcomingMatchesCard";
+import FeaturedNews from "../../components/News/FeaturedNews";
+import UpcomingMatchesCard from "../../components/Fixture/UpcomingMatchesCard";
 import { getUpcomingMatchesList } from "../../../lib/apis/fixtures-apis";
 import { randomId } from "../../utils/utils";
-import LatestNews from "../../components/HomePageComponents/LatestNews";
+import LatestNews from "../../components/News/LatestNews";
 import { getLatestNews } from "../../../lib/apis/news-apis";
-import PointTable from "../../components/HomePageComponents/PointTable";
+import PointTable from "../../components/PointTable/PointTable";
 
 const HomePage = () => {
   const [upComingMatches, setUpComingMatches] = useState([]);

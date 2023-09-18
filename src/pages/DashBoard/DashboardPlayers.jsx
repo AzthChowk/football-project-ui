@@ -142,44 +142,42 @@ const Players = () => {
                     )
                     .map((item, index) => {
                       return (
-                        <>
-                          <TableRow key={item._id}>
-                            <TableCell align="center">
-                              {page * 10 + index + 1}
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              <img
-                                src={item.playerImageUrl}
-                                alt=""
-                                style={{
-                                  width: "40px",
-                                  height: "40px",
-                                  objectFit: "cover",
-                                  borderRadius: "50px",
-                                }}
-                              />
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              {item.fullName}
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              {item.position}
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              {item.nationality}
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              {item.dob.split("T")[0]}
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              {item.clubName}
-                            </TableCell>
-                            <TableCell sx={{ padding: "2px" }}>
-                              <PlayerEditForm playerId={item._id} />
-                              <Button>Delete</Button>
-                            </TableCell>
-                          </TableRow>
-                        </>
+                        <TableRow key={index}>
+                          <TableCell align="center">
+                            {page * 10 + index + 1}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            <img
+                              src={item.playerImageUrl}
+                              alt=""
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                                objectFit: "cover",
+                                borderRadius: "50px",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.fullName}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.position}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.nationality}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.dob.split("T")[0]}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            {item.clubName}
+                          </TableCell>
+                          <TableCell sx={{ padding: "2px" }}>
+                            <PlayerEditForm playerId={item._id} />
+                            <Button>Delete</Button>
+                          </TableCell>
+                        </TableRow>
                       );
                     })}
                 </>

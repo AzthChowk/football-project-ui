@@ -1,7 +1,6 @@
 import React from "react";
-import TeamCard from "../components/TeamCard/TeamCard";
-import "../styles/teams.css";
-import { Link } from "react-router-dom";
+import TeamCard from "../../components/Team/TeamCard";
+import "../../styles/teams.css";
 
 const Teams = () => {
   return (

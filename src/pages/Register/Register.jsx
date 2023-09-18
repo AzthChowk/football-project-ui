@@ -14,6 +14,7 @@ import {
   openErrorSnackbar,
   openSuccessSnackbar,
 } from "../../redux-store/snackbarSlice";
+import CustomSnackbar from "../../components/CustomUi/CustomSnackbar";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -26,17 +27,18 @@ const Register = () => {
       navigate("/login");
       dispatch(openSuccessSnackbar(response?.data?.message));
     },
-    onError: (response) => {
-      console.log("res", response);
+    onError: (error) => {
+      console.log("res", error?.response?.data?.message);
       dispatch(
         openErrorSnackbar(
-          response?.response?.data?.message || "Something went wrong."
+          error?.response?.data?.message || "Something went wrong."
         )
       );
     },
   });
   return (
     <Box className="register-page" sx={{ padding: 1 }}>
+      <CustomSnackbar />
       <Grid container className="container user-register">
         {/* ===== Grid left ===== */}
         <Grid
@@ -112,7 +114,10 @@ const Register = () => {
               confirmPassword: Yup.string()
                 .oneOf([Yup.ref("password"), null], "Passwords must match")
                 .required("Confirmation password is required."),
-              gender: Yup.string(),
+              gender: Yup.string().oneOf(
+                ["male", "female"],
+                "Gender is required and must be either male or female."
+              ),
               role: Yup.string().required("Role is required."),
             })}
             onSubmit={async (values) => {

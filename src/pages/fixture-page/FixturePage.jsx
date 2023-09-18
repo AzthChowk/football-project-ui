@@ -15,11 +15,7 @@ const FixturePage = () => {
         Fixtures
       </Typography>
       {data?.data.map((item, index) => {
-        return (
-          <Box key={index}>
-            <FixtureCard {...item} />
-          </Box>
-        );
+        return <FixtureCard key={index} {...item} />;
       })}
     </Box>
   );

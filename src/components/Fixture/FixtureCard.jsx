@@ -72,14 +72,10 @@ const FixtureCard = ({
           }}
         >
           {resultData.isMatchFinished === true ? (
-            <h4>{resultData.value}</h4>
+            <>{resultData.value}</>
           ) : (
-            <h4>{(+time / 100).toPrecision(4)}</h4>
+            <>{(+time / 100).toPrecision(4)}</>
           )}
-
-          {/* {resultData.map((item) => {
-            return <>{item.value}</>;
-          })} */}
         </Typography>
 
         <Typography
@@ -87,7 +83,6 @@ const FixtureCard = ({
           sx={{
             fontWeight: 700,
             textTransform: "uppercase",
-            fontFamily: "Dm Sans",
           }}
         >
           <img

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { getTeamsList } from "../../../lib/apis/teams-apis";
-import TeamRegisterForm from "../../components/TeamAdd/TeamRegisterForm";
+import TeamRegisterForm from "../../components/Team/TeamRegisterForm";
 
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -20,6 +20,7 @@ import {
   Typography,
 } from "@mui/material";
 import SummaryCard from "../../components/SummaryCard";
+import { randomId } from "../../utils/utils";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,7 +68,8 @@ const Teams = () => {
     queryKey: ["teams-list"],
     queryFn: () => getTeamsList(),
   });
-  console.log(data?.data);
+  const uniqueId = randomId();
+
   return (
     <Box>
       <Box sx={{ padding: "10px 0" }}>
@@ -118,38 +120,36 @@ const Teams = () => {
                 <>
                   {data?.data?.map((item, index) => {
                     return (
-                      <>
-                        <TableRow key={item._id}>
-                          <TableCell align="center">{index + 1}</TableCell>
-                          <TableCell>
-                            <img
-                              src={item.teamLogo}
-                              alt=""
-                              style={{
-                                width: "50px",
-                                height: "50px",
-                                objectFit: "cover",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell sx={{ padding: "2px" }}>
-                            {item.teamName}
-                          </TableCell>
-                          <TableCell sx={{ padding: "2px" }}>
-                            {item.manager}
-                          </TableCell>
-                          <TableCell sx={{ padding: "2px" }}>
-                            {item.coach}
-                          </TableCell>
-                          <TableCell sx={{ padding: "2px" }}>
-                            {item.url}
-                          </TableCell>
-                          <TableCell>
-                            <Button>Edit</Button>
-                            <Button>Delete</Button>
-                          </TableCell>
-                        </TableRow>
-                      </>
+                      <TableRow key={index}>
+                        <TableCell align="center">{index + 1}</TableCell>
+                        <TableCell>
+                          <img
+                            src={item.teamLogo}
+                            alt=""
+                            style={{
+                              width: "50px",
+                              height: "50px",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell sx={{ padding: "2px" }}>
+                          {item.teamName}
+                        </TableCell>
+                        <TableCell sx={{ padding: "2px" }}>
+                          {item.manager}
+                        </TableCell>
+                        <TableCell sx={{ padding: "2px" }}>
+                          {item.coach}
+                        </TableCell>
+                        <TableCell sx={{ padding: "2px" }}>
+                          {item.url}
+                        </TableCell>
+                        <TableCell>
+                          <Button>Edit</Button>
+                          <Button>Delete</Button>
+                        </TableCell>
+                      </TableRow>
                     );
                   })}
                 </>

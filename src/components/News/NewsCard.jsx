@@ -72,10 +72,6 @@ const NewsCard = () => {
                 <Typography sx={{ padding: "5px 0" }}>
                   {newsHighlights.slice(0, 100)}
                 </Typography>
-
-                {/* <p>{fullNews}</p> */}
-                {/* <p>Category : {category}</p>
-                <p>Tags : {tags}</p> */}
               </Grid>
             </Grid>
           );
