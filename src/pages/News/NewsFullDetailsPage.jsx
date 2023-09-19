@@ -4,7 +4,7 @@ import React from "react";
 import ShareIcon from "@mui/icons-material/Share";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { getFullNews } from "../../../lib/apis/news-apis";
 import NewsFullDetails from "../../components/News/NewsFullDetails";
@@ -13,7 +13,7 @@ import LatestNewsSingle from "../../components/News/LatestNewsSingle";
 const NewsFullDetailsPage = () => {
   const params = useParams();
   const newsId = params.id;
-  console.log("newsId", newsId);
+  const queryClient = useQueryClient();
 
   const { isLoading, data } = useQuery({
     queryKey: ["full-news"],

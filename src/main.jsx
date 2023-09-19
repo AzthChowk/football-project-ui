@@ -34,6 +34,7 @@ const queryClient = new QueryClient();
 import { Provider } from "react-redux";
 import NewsFullDetailsPage from "./pages/News/NewsFullDetailsPage";
 import store from "./redux-store/store";
+import PointTable from "./pages/PointTable/PointTable";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
         path: "news/:id",
         element: <NewsFullDetailsPage />,
       },
+
       {
         path: "players",
         element: <Players />,
@@ -69,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "fixtures",
         element: <FixturePage />,
+      },
+      {
+        path: "point-table",
+        element: <PointTable />,
       },
     ],
   },
