@@ -15,10 +15,8 @@ import Teams from "./pages/Teams/Teams";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
 
-import NewsAddForm from "./components/News/NewsAddForm";
 import DashboardIndex from "./pages/DashBoard/DashBoardIndex";
 import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
-import DashboardNews from "./pages/DashBoard/DashboardNews";
 import DashboardPlayers from "./pages/DashBoard/DashboardPlayers";
 import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
 import DashboardResults from "./pages/DashBoard/DashboardResults";
@@ -32,12 +30,12 @@ const queryClient = new QueryClient();
 
 // react redux
 import { Provider } from "react-redux";
+import AddNews from "./pages/News/AddNews";
 import NewsFullDetailsPage from "./pages/News/NewsFullDetailsPage";
-import store from "./redux-store/store";
-import PointTable from "./pages/PointTable/PointTable";
 import NewsRoot from "./pages/News/NewsRoot";
 import ReporterNews from "./pages/News/ReporterNews";
-import AddNews from "./pages/News/AddNews";
+import PointTable from "./pages/PointTable/PointTable";
+import store from "./redux-store/store";
 
 const router = createBrowserRouter([
   {
@@ -118,14 +116,6 @@ const router = createBrowserRouter([
       {
         path: "teams",
         element: <DashboardTeams />,
-      },
-      {
-        path: "news",
-        element: <DashboardNews />,
-      },
-      {
-        path: "addnews",
-        element: <NewsAddForm />,
       },
       {
         path: "fixtures",

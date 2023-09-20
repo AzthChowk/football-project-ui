@@ -26,6 +26,7 @@ import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 
 import CustomSnackbar from "../../components/CustomUi/CustomSnackBar";
+import LogOut from "../../components/LogOut";
 
 const DashboardRoot = () => {
   const [expand, setExpand] = React.useState(true);
@@ -104,55 +105,7 @@ const DashboardRoot = () => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <ExitToAppIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Log out"
-                  aria-describedby={id}
-                  variant="contained"
-                  onClick={handleClick}
-                />
-
-                <Popover
-                  id={id}
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                >
-                  <Typography sx={{ p: 2 }}>
-                    Are you sure to log out?
-                  </Typography>
-                  <Stack
-                    spacing={{ xs: 1, sm: 2 }}
-                    direction="row"
-                    useFlexGap
-                    flexWrap="wrap"
-                    justifyContent={"center"}
-                    padding={"5px"}
-                  >
-                    <Button
-                      variant="outlined"
-                      color="success"
-                      onClick={handleLogout}
-                    >
-                      Yes
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      onClick={handleClose}
-                    >
-                      No
-                    </Button>
-                  </Stack>
-                </Popover>
-              </ListItemButton>
+              <LogOut />
             </ListItem>
           </List>
         </nav>
@@ -236,41 +189,6 @@ const DashboardRoot = () => {
                     <TableRowsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Point Table" />
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-          </List>
-        </nav>
-        <Divider />
-        <nav>
-          <List>
-            <ListItem disablePadding>
-              <NavLink
-                to="news"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                <ListItemButton>
-                  <ListItemIcon>
-                    <ArticleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="News" />
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            <ListItem disablePadding>
-              <NavLink
-                to="addnews"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                <ListItemButton>
-                  <ListItemIcon>
-                    <AddLinkIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Add news" />
                 </ListItemButton>
               </NavLink>
             </ListItem>

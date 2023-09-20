@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Avatar, Typography, Divider, Grid } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
+import LogOut from "../../components/LogOut";
 
 const NewsRoot = () => {
   const userEmail = localStorage.getItem("email");
@@ -16,7 +17,7 @@ const NewsRoot = () => {
         <Grid
           item
           xs={12}
-          sm={6}
+          sm={4}
           md={4}
           lg={3}
           xl={3}
@@ -28,9 +29,12 @@ const NewsRoot = () => {
           }}
         >
           <Avatar />
-          <Typography> Hello! {userEmail} </Typography>
+          <Typography sx={{ wordBreak: "break-all" }}>Hello!</Typography>
+          <Typography sx={{ wordBreak: "break-all" }}>{userEmail}</Typography>
           <Typography> Profile </Typography>
-          <Typography> Log out </Typography>
+          <Typography>
+            <LogOut />
+          </Typography>
           <Divider />
           <Link to="news">
             <Typography> News </Typography>
@@ -40,7 +44,7 @@ const NewsRoot = () => {
           </Link>
           <Typography> Edit News </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} md={8} lg={9} xl={9}>
+        <Grid item xs={12} sm={8} md={8} lg={9} xl={9}>
           <Outlet />
         </Grid>
       </Grid>

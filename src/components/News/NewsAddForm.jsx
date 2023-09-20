@@ -219,23 +219,9 @@ const NewsAddForm = () => {
             </Grid>
             <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
               <Grid sx={{ display: "flex", justifyContent: "flex-start" }}>
-                <Box sx={{ width: "100%" }}>
-                  {localUrl && (
-                    <img
-                      src={localUrl}
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        objectFit: "contain",
-                        border: "1px solid #999",
-                        borderRadius: "5px",
-                      }}
-                    />
-                  )}
-                </Box>
                 <Stack direction="row" alignItems="center" spacing={2}>
                   <Button variant="outlined" component="label">
-                    Upload Player Image
+                    Upload News Image
                     <input
                       hidden
                       accept="image/*"
@@ -248,6 +234,20 @@ const NewsAddForm = () => {
                     />
                   </Button>
                 </Stack>
+                <Box sx={{ width: "100%", padding: 1 }}>
+                  {localUrl && (
+                    <img
+                      src={localUrl}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "cover",
+                        border: "1px solid #999",
+                        borderRadius: "5px",
+                      }}
+                    />
+                  )}
+                </Box>
               </Grid>
               <Grid>
                 <Button variant="contained" type="submit">
