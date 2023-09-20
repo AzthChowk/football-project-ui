@@ -35,6 +35,9 @@ import { Provider } from "react-redux";
 import NewsFullDetailsPage from "./pages/News/NewsFullDetailsPage";
 import store from "./redux-store/store";
 import PointTable from "./pages/PointTable/PointTable";
+import NewsRoot from "./pages/News/NewsRoot";
+import ReporterNews from "./pages/News/ReporterNews";
+import AddNews from "./pages/News/AddNews";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +78,20 @@ const router = createBrowserRouter([
       {
         path: "point-table",
         element: <PointTable />,
+      },
+      {
+        path: "reporter",
+        element: <NewsRoot />,
+        children: [
+          {
+            path: "news",
+            element: <ReporterNews />,
+          },
+          {
+            path: "news/add",
+            element: <AddNews />,
+          },
+        ],
       },
     ],
   },

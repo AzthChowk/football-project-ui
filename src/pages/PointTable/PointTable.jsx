@@ -141,7 +141,9 @@ const PointTable = () => {
                           )}
                         </TableCell>
                         <TableCell align="center" sx={{ padding: "2px" }}>
-                          {item.points}
+                          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                            {item.points}
+                          </Typography>
                         </TableCell>
                       </TableRow>
                     );

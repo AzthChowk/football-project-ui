@@ -78,12 +78,14 @@ const HomePage = () => {
             <Typography
               variant="h6"
               sx={{
-                color: "#37003c",
+                color: "#fff",
                 fontWeight: 900,
                 p: 2,
                 textAlign: "center",
                 textTransform: "uppercase",
                 borderRadius: "10px",
+                backgroundColor: "#37003c",
+                m: 1,
               }}
             >
               upcoming matches

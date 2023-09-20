@@ -28,8 +28,13 @@ const LoginPage = () => {
       console.log(response);
       localStorage.setItem("accesstoken", response?.data?.accessToken);
       localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("userRole", response?.data?.findUser?.role);
+      localStorage.setItem("userId", response?.data?.findUser?._id);
+      localStorage.setItem("email", response?.data?.findUser?.email);
       dispatch(openSuccessSnackbar(response?.data?.message));
-      navigate("/admin");
+      if (response?.data?.findUser?.role === "Administrator")
+        navigate("/admin");
+      if (response?.data?.findUser?.role === "Reporter") navigate("/reporter");
     },
     onError: (error) => {
       dispatch(openErrorSnackbar(error?.response?.data?.message));

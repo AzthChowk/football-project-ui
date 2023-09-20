@@ -90,7 +90,7 @@ const Register = () => {
               email: "",
               password: "",
               gender: "",
-              role: "Administrator",
+              role: "",
             }}
             validationSchema={Yup.object({
               firstName: Yup.string()
@@ -118,7 +118,10 @@ const Register = () => {
                 ["male", "female"],
                 "Gender is required and must be either male or female."
               ),
-              role: Yup.string().required("Role is required."),
+              role: Yup.string().oneOf(
+                ["Administrator", "Reporter"],
+                "Role is required and must be either administrator or reporter."
+              ),
             })}
             onSubmit={async (values) => {
               addAdminMutation.mutate(values);

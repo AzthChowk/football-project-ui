@@ -33,7 +33,7 @@ const UpcomingMatchesCard = ({
       <Typography
         variant="h6"
         sx={{
-          fontWeight: 700,
+          fontWeight: 500,
           textTransform: "uppercase",
           fontSize: "12pt",
           padding: 1,
@@ -53,10 +53,11 @@ const UpcomingMatchesCard = ({
         />{" "}
         {opponentTwoName}
       </Typography>
-      <Typography sx={{ fontSize: "10pt" }}>
-        GMT - {time}, {playGround}
+      <Typography sx={{ fontWeight: 700 }}>
+        {date.split("T")[0]} | GMT - {time},{" "}
       </Typography>
-      <Divider variant="middle" sx={{ width: "75%", margin: "auto" }} />
+      <Typography sx={{ fontSize: "10pt" }}>{playGround}</Typography>
+      <Divider variant="middle" sx={{ width: "25%", margin: "auto" }} />
     </Grid>
   );
 };

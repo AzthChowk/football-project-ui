@@ -1,92 +1,52 @@
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
-import { TextField } from "@mui/material";
+import { Button, Grid, Box, Stack } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import { styled } from "@mui/system";
+import TextField from "@mui/material/TextField";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { $axios } from "../../../lib/axios";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import "./text-area-full-news.css";
+import axios from "axios";
+import {
+  openErrorSnackbar,
+  openSuccessSnackbar,
+} from "../../redux-store/snackbarSlice";
+import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { addNews } from "../../../lib/apis/news-apis";
 
 const NewsAddForm = () => {
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
   const [open, setOpen] = useState(false);
-  const blue = {
-    100: "#DAECFF",
-    200: "#b6daff",
-    400: "#3399FF",
-    500: "#007FFF",
-    600: "#0072E5",
-    900: "#003A75",
-  };
+  const [localUrl, setLocalUrl] = useState(null);
+  const [newsImg, setNewImg] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const grey = {
-    50: "#f6f8fa",
-    100: "#eaeef2",
-    200: "#d0d7de",
-    300: "#afb8c1",
-    400: "#8c959f",
-    500: "#6e7781",
-    600: "#57606a",
-    700: "#424a53",
-    800: "#32383f",
-    900: "#24292f",
-  };
+  const addNewsMutation = useMutation({
+    mutationKey: ["add-news"],
+    mutationFn: (values) => addNews(values),
+    onSuccess: (response) =>
+      dispatch(
+        openSuccessSnackbar(
+          response?.data?.message || "News added successfully."
+        )
+      ),
+    onError: (error) => {
+      dispatch(
+        openErrorSnackbar(
+          error?.message || "Something went wrong, cannot add news."
+        )
+      );
+    },
+  });
 
-  const StyledTextarea = styled(TextareaAutosize)(
-    ({ theme }) => `
-    width: 500px;
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 12px;
-    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${
-      theme.palette.mode === "dark" ? grey[900] : grey[50]
-    };
-  
-    &:hover {
-      border-color: ${blue[400]};
-    }
-  
-    &:focus {
-      border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${
-        theme.palette.mode === "dark" ? blue[500] : blue[200]
-      };
-    }
-  
-    // firefox
-    &:focus-visible {
-      outline: 0;
-    }
-  `
-  );
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
   return (
-    <div className="container add-news-form">
-      {success && <h1>Added Successfully.</h1>}
-      <div>
-        <h1>Add News</h1>
-      </div>
-
+    <Grid>
       <Formik
         initialValues={{
           newsTitle: "",
@@ -98,126 +58,207 @@ const NewsAddForm = () => {
           category: "",
         }}
         validationSchema={Yup.object({
-          newsTitle: Yup.string().required("Required"),
-          newsAuthor: Yup.string().required("Required"),
-          fullNews: Yup.string().required("Required"),
-          newsHighlights: Yup.string().required("Required"),
+          newsTitle: Yup.string().required("News title is required."),
+          fullNews: Yup.string().required("Full news is required."),
+          newsHighlights: Yup.string().required("News highlights is required."),
           isFeaturedNews: Yup.boolean().required("Required"),
-          newsImgUrl: Yup.string().required("Required"),
+
           category: Yup.string().required("Required").isValid[("xyz", "abc")],
         })}
         onSubmit={async (values) => {
-          console.log(values);
-          try {
-            await $axios.post("/news/create", values);
-            console.log("News added successfully.");
-            setSuccess(true);
-          } catch (error) {
-            setFailed(true);
-            console.log(error.message, "Cannot add news.");
+          let imageUrl = "";
+
+          //playerImage is image that we take as input
+          if (newsImg) {
+            //dmtrulbdo - cloudname from cloudinary
+            const cloudName = "dmtrulbd0";
+            // creates form data object
+            const data = new FormData();
+            data.append("file", newsImg);
+            data.append("upload_preset", "vcyz8tr5");
+            data.append("cloud_name", cloudName);
+            console.log("data here", data);
+
+            try {
+              const res = await axios.post(
+                `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+                data
+              );
+
+              imageUrl = res.data.secure_url;
+            } catch (error) {
+              dispatch(openErrorSnackbar("Image upload failed."));
+            }
           }
+          // this is where we store the image as url - check database model - name same
+          values.newsAuthor = localStorage.getItem("userId");
+          values.newsImgUrl = imageUrl;
+          console.log(values);
+
+          addNewsMutation.mutate(values);
         }}
       >
         {(formik) => (
           <form onSubmit={formik.handleSubmit}>
-            <div className="add-news-form-field">
-              <h4>
-                <label>News Title</label>
-              </h4>
-              <StyledTextarea
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg={12}
+              xl={12}
+              sx={{ margin: "10px 0" }}
+            >
+              <TextField
+                fullWidth
+                required
                 name="newsTitle"
+                label="News Title"
+                variant="outlined"
                 {...formik.getFieldProps("newsTitle")}
               />
               {formik.touched.newsTitle && formik.errors.newsTitle ? (
                 <div>{formik.errors.newsTitle}</div>
               ) : null}
-            </div>
+            </Grid>
 
-            <div className="add-news-form-field">
-              <h4>
-                <label>Author</label>
-              </h4>
-              <TextField
-                name="newsAuthor"
-                type="text"
-                {...formik.getFieldProps("newsAuthor")}
-              />
-              {formik.touched.newsAuthor && formik.errors.newsAuthor ? (
-                <div>{formik.errors.newsAuthor}</div>
-              ) : null}
-            </div>
-
-            <div className="add-news-form-field">
-              <h4>
-                <label>News Highlights</label>
-              </h4>
-              <StyledTextarea
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg={12}
+              xl={12}
+              sx={{ margin: "10px 0", display: "flex" }}
+            >
+              <Grid>
+                <TextField
+                  fullWidth
+                  required
+                  name="isFeaturedNews"
+                  id="outlined-basic"
+                  label="Is featured news"
+                  variant="outlined"
+                  type="text"
+                  {...formik.getFieldProps("isFeaturedNews")}
+                />
+                {formik.touched.isFeaturedNews &&
+                formik.errors.isFeaturedNews ? (
+                  <div>{formik.errors.isFeaturedNews}</div>
+                ) : null}
+              </Grid>
+              <Grid sx={{ padding: "0 10px" }}>
+                <TextField
+                  fullWidth
+                  required
+                  name="category"
+                  id="outlined-basic"
+                  label="Category"
+                  variant="outlined"
+                  {...formik.getFieldProps("category")}
+                />
+                {formik.touched.category && formik.errors.category ? (
+                  <div>{formik.errors.category}</div>
+                ) : null}
+              </Grid>
+              <Grid sx={{ padding: "0 10px" }}>
+                <TextField
+                  fullWidth
+                  name="tags"
+                  id="outlined-basic"
+                  label="tags"
+                  variant="outlined"
+                  {...formik.getFieldProps("tags")}
+                />
+                {formik.touched.tags && formik.errors.tags ? (
+                  <div>{formik.errors.tags}</div>
+                ) : null}
+              </Grid>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg={12}
+              xl={12}
+              sx={{ margin: "10px 0" }}
+            >
+              <TextareaAutosize
+                minRows={1}
+                className="text-area-full-news"
+                placeholder="News highlights"
                 name="newsHighlights"
-                type="text"
                 {...formik.getFieldProps("newsHighlights")}
               />
+
               {formik.touched.newsHighlights && formik.errors.newsHighlights ? (
                 <div>{formik.errors.newsHighlights}</div>
               ) : null}
-            </div>
-            <div className="add-news-form-field">
-              <h4>
-                <label>Post in Featured Section</label>
-              </h4>
-              <TextField
-                name="isFeaturedNews"
-                type="text"
-                {...formik.getFieldProps("isFeaturedNews")}
-              />
-              {formik.touched.isFeaturedNews && formik.errors.isFeaturedNews ? (
-                <div>{formik.errors.isFeaturedNews}</div>
-              ) : null}
-            </div>
-            <div className="add-news-form-field">
-              <h4>
-                <label>News Image</label>
-              </h4>
-              <TextField
-                name="newsImgUrl"
-                type="text"
-                {...formik.getFieldProps("newsImgUrl")}
-              />
-              {formik.touched.newsImgUrl && formik.errors.newsImgUrl ? (
-                <div>{formik.errors.newsImgUrl}</div>
-              ) : null}
-            </div>
-            <div className="add-news-form-field">
-              <h4>
-                <label>Category</label>
-              </h4>
-              <TextField
-                name="category"
-                type="text"
-                {...formik.getFieldProps("category")}
-              />
-              {formik.touched.category && formik.errors.category ? (
-                <div>{formik.errors.category}</div>
-              ) : null}
-            </div>
-
-            <div className="add-news-form-field">
-              <h4>
-                <label>Full News</label>
-              </h4>
-              <StyledTextarea
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              lg={12}
+              xl={12}
+              sx={{ margin: "10px 0" }}
+            >
+              <TextareaAutosize
+                minRows={10}
+                className="text-area-full-news"
+                placeholder="Full news..."
                 name="fullNews"
                 {...formik.getFieldProps("fullNews")}
               />
+
               {formik.touched.fullNews && formik.errors.fullNews ? (
                 <div>{formik.errors.fullNews}</div>
               ) : null}
-            </div>
-
-            <button type="submit">Submit</button>
+            </Grid>
+            <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Grid sx={{ display: "flex", justifyContent: "flex-start" }}>
+                <Box sx={{ width: "100%" }}>
+                  {localUrl && (
+                    <img
+                      src={localUrl}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        objectFit: "contain",
+                        border: "1px solid #999",
+                        borderRadius: "5px",
+                      }}
+                    />
+                  )}
+                </Box>
+                <Stack direction="row" alignItems="center" spacing={2}>
+                  <Button variant="outlined" component="label">
+                    Upload Player Image
+                    <input
+                      hidden
+                      accept="image/*"
+                      type="file"
+                      onChange={(event) => {
+                        const newsImg = event.target.files[0];
+                        setLocalUrl(URL.createObjectURL(newsImg));
+                        setNewImg(newsImg);
+                      }}
+                    />
+                  </Button>
+                </Stack>
+              </Grid>
+              <Grid>
+                <Button variant="contained" type="submit">
+                  Add News
+                </Button>
+              </Grid>
+            </Grid>
           </form>
         )}
       </Formik>
-    </div>
+    </Grid>
   );
 };
 
