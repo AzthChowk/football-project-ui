@@ -12,6 +12,7 @@ import Players from "./pages/Players/Players";
 import Register from "./pages/Register/Register";
 import Result from "./pages/Result/Result";
 import Teams from "./pages/Teams/Teams";
+import TeamsDetails from "./pages/Teams/TeamsDetails";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
 
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "teams",
         element: <Teams />,
+      },
+      {
+        path: "teams/:id",
+        element: <TeamsDetails />,
       },
       {
         path: "news",

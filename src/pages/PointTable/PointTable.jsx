@@ -18,7 +18,7 @@ const PointTable = () => {
     queryKey: ["point-table"],
     queryFn: () => getPointTable(),
   });
-  console.log(data?.data);
+
   return (
     <>
       <Box className="container" sx={{ padding: 1 }}>
@@ -107,8 +107,8 @@ const PointTable = () => {
                             alt=""
                             style={{
                               width: "40px",
-
                               objectFit: "contain",
+                              
                             }}
                           />
                           <Typography sx={{ fontWeight: 700 }}>

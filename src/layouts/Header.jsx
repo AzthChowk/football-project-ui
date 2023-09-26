@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -6,6 +6,7 @@ import "./header.css";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
   return (
@@ -103,6 +104,9 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
+        </Box>
+        <Box className="hamburger-menu">
+          <MenuIcon />
         </Box>
       </Box>
     </nav>

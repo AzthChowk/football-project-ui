@@ -9,7 +9,7 @@ import { getUpcomingMatchesList } from "../../../lib/apis/fixtures-apis";
 import { randomId } from "../../utils/utils";
 import LatestNews from "../../components/News/LatestNews";
 import { getLatestNews } from "../../../lib/apis/news-apis";
-import PointTable from "../../components/PointTable/PointTable";
+import PointTable from "../../components/PointTable/SummaryPointTable";
 
 const HomePage = () => {
   const [upComingMatches, setUpComingMatches] = useState([]);

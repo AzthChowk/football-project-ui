@@ -18,7 +18,13 @@ const FixtureCard = ({
   return (
     <Box
       sx={{
-        display: "flex",
+        display: {
+          xs: "block",
+          sm: "block",
+          md: "flex",
+          lg: "flex",
+          xl: "flex",
+        },
         justifyContent: "space-between",
         backgroundColor: "#F6F1F1",
         padding: 1,
@@ -37,7 +43,13 @@ const FixtureCard = ({
     >
       <Box
         sx={{
-          display: "flex",
+          display: {
+            xs: "block",
+            sm: "block",
+            md: "flex",
+            lg: "flex",
+            xl: "flex",
+          },
           textAlign: "center",
           alignItems: "center",
         }}
@@ -100,7 +112,11 @@ const FixtureCard = ({
           {opponentTwoName}
         </Typography>
       </Box>
-      <Box sx={{ textAlign: "right" }}>
+      <Box
+        sx={{
+          textAlign: { xs: "center", sm: "center", md: "left", lg: "left" },
+        }}
+      >
         <Typography variant="h6" sx={{ padding: "0 20px", fontWeight: 500 }}>
           Match No. - {matchNumber}
         </Typography>

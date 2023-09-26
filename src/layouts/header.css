@@ -8,7 +8,6 @@
   background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
-
   width: 100%;
   z-index: 10000;
 }
@@ -43,8 +42,23 @@
   text-decoration: none;
   font-weight: 300;
   align-items: center;
+  text-transform: uppercase;
 }
 .active {
   color: rgb(255, 0, 0);
   background-color: #999;
+}
+
+/* ============== Hamburger Menu ================== */
+.hamburger-menu {
+  margin: auto 0;
+  display: none;
+}
+@media screen and (max-width: 1000px) {
+  .navbar-menu .menu-item ul {
+    display: none;
+  }
+  .navbar-menu .hamburger-menu {
+    display: block;
+  }
 }
