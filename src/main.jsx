@@ -112,7 +112,7 @@ const router = createBrowserRouter([
     errorElement: <NoPageFound />,
 
     children: [
-      { index: true, element: <DashboardIndex /> },
+      { index: true },
       {
         path: "players",
         element: <DashboardPlayers />,
