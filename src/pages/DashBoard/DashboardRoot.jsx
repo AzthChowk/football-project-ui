@@ -25,7 +25,6 @@ import TableRowsIcon from "@mui/icons-material/TableRows";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 
-import CustomSnackbar from "../../components/CustomUi/CustomSnackBar";
 import LogOut from "../../components/LogOut";
 
 const DashboardRoot = () => {
