@@ -54,7 +54,6 @@ const DashboardRoot = () => {
   };
   return (
     <Box>
-      <CustomSnackbar />
       <Box
         sx={{
           height: "100vh",
