@@ -16,7 +16,6 @@ import TeamsDetails from "./pages/Teams/TeamsDetails";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
 
-import DashboardIndex from "./pages/DashBoard/DashBoardIndex";
 import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
 import DashboardPlayers from "./pages/DashBoard/DashboardPlayers";
 import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
