@@ -15,7 +15,6 @@ import {
   openSuccessSnackbar,
 } from "../../redux-store/snackbarSlice";
 import "./login.css";
-const url = "http://localhost:9090/login";
 
 const LoginPage = () => {
   const navigate = useNavigate();
