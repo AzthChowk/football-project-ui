@@ -119,7 +119,6 @@ export default function CustomizedDialogs() {
 
             //playerImage is image that we take as input
             if (teamImage) {
-              console.log("teamImg here", teamImage);
               //dmtrulbdo - cloudname from cloudinary
               const cloudName = "dmtrulbd0";
               // creates form data object
@@ -127,14 +126,12 @@ export default function CustomizedDialogs() {
               data.append("file", teamImage);
               data.append("upload_preset", "easterfc");
               data.append("cloud_name", cloudName);
-              console.log("data here", data);
 
               try {
                 const res = await axios.post(
                   `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
                   data
                 );
-                console.log("res here", res);
 
                 imageUr = res.data.secure_url;
               } catch (error) {

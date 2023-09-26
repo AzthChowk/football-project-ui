@@ -17,7 +17,7 @@ const Players = () => {
     queryKey: ["all-players"],
     queryFn: () => getPlayersList(),
   });
-  console.log(data?.data);
+
   // ========table from mui ============
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {

@@ -28,7 +28,6 @@ const Register = () => {
       dispatch(openSuccessSnackbar(response?.data?.message));
     },
     onError: (error) => {
-      console.log("res", error?.response?.data?.message);
       dispatch(
         openErrorSnackbar(
           error?.response?.data?.message || "Something went wrong."

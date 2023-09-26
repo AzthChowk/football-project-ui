@@ -17,9 +17,8 @@ const ResultDashboardList = () => {
     queryKey: ["result-list"],
     queryFn: () => getResults(),
   });
-  console.log(data);
+
   const id = uuidv4();
-  console.log(id);
 
   return (
     <Box sx={{ paddingRight: 2 }}>

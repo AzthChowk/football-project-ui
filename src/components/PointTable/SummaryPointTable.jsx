@@ -14,7 +14,7 @@ const SummaryPointTable = () => {
     queryKey: ["point-table"],
     queryFn: () => getPointTable(),
   });
-  console.log(data?.data);
+
   return (
     <TableContainer sx={{ width: "100%" }}>
       <Table sx={{ textAlign: "center" }}>

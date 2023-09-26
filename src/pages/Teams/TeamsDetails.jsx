@@ -52,7 +52,6 @@ const TeamsDetails = () => {
     queryKey: ["team-details"],
     queryFn: () => getTeamDetails(teamId),
   });
-  console.log(data);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

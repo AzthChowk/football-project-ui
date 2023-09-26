@@ -24,7 +24,6 @@ const LoginPage = () => {
     mutationKey: ["user-login"],
     mutationFn: (values) => loginAdmin(values),
     onSuccess: (response) => {
-      console.log(response);
       localStorage.setItem("accesstoken", response?.data?.accessToken);
       localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("userRole", response?.data?.findUser?.role);

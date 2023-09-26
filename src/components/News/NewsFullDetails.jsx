@@ -6,7 +6,6 @@ import { getFullNews } from "../../../lib/apis/news-apis";
 import { useParams } from "react-router-dom";
 
 const NewsFullDetails = (props) => {
-  console.log("props", props);
   return (
     <>
       <Typography

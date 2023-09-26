@@ -5,7 +5,7 @@ import LogOut from "../../components/LogOut";
 
 const NewsRoot = () => {
   const userEmail = localStorage.getItem("email");
-  console.log(userEmail);
+
   return (
     <Box className="container">
       <Grid

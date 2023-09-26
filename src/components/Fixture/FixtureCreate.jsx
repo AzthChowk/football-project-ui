@@ -47,7 +47,6 @@ const FixtureCreate = () => {
       dispatch(openSuccessSnackbar(response?.data?.message));
     },
     onError: (error) => {
-      console.log("error", error);
       dispatch(openErrorSnackbar(error?.response?.data?.message));
     },
   });

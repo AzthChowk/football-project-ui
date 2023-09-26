@@ -77,7 +77,6 @@ const NewsAddForm = () => {
             data.append("file", newsImg);
             data.append("upload_preset", "vcyz8tr5");
             data.append("cloud_name", cloudName);
-            console.log("data here", data);
 
             try {
               const res = await axios.post(
@@ -93,7 +92,6 @@ const NewsAddForm = () => {
           // this is where we store the image as url - check database model - name same
           values.newsAuthor = localStorage.getItem("userId");
           values.newsImgUrl = imageUrl;
-          console.log(values);
 
           addNewsMutation.mutate(values);
         }}

@@ -20,7 +20,7 @@ const NewsFullDetailsPage = () => {
     queryFn: () => getFullNews(newsId),
     onError: (error) => {},
   });
-  console.log(data);
+
   return (
     <Grid container className="container" sx={{ padding: 2 }}>
       <Grid item xs={12} sm={12} md={8} lg={8} xl={8} sx={{ padding: 1 }}>

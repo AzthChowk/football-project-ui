@@ -14,7 +14,7 @@ const FixtureCard = ({
   opponentTwoLogo,
 }) => {
   const resultData = useSelector((state) => state.result);
-  console.log(resultData);
+
   return (
     <Box
       sx={{

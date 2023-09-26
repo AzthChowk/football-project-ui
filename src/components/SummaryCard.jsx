@@ -2,7 +2,6 @@ import { Grid, Typography } from "@mui/material";
 import React from "react";
 
 const SummaryCard = (props) => {
-  console.log(props);
   return (
     <Grid
       item

@@ -10,7 +10,7 @@ const Teams = () => {
     queryKey: ["all-teams"],
     queryFn: () => getTeamsList(),
   });
-  console.log(data?.data);
+
   return (
     <Box className="container">
       <Typography variant="h4" sx={{ padding: "20px 0", fontWeight: 700 }}>

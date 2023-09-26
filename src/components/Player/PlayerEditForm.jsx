@@ -59,16 +59,14 @@ const PlayerEditForm = (props) => {
     queryFn: () => getPlayerDetails(props.playerId),
   });
   const playerData = data?.data;
-  console.log(playerData);
 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
         const teamList = await axios.post("http://localhost:9090/teams");
-        console.log(teamList.data);
+
         setTeams(teamList.data);
       } catch (error) {
-        console.log(error.message);
         setError(true);
       }
     };
@@ -154,14 +152,12 @@ const PlayerEditForm = (props) => {
             ),
           })}
           onSubmit={async (values) => {
-            console.log(values);
             try {
               await $axios.post("/player/create", values);
-              console.log("Player added successfully.");
+
               setSuccess(true);
             } catch (error) {
               setFailed(true);
-              console.log(error.message, "Cannot add player.");
             }
           }}
         >

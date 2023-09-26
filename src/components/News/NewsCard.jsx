@@ -10,9 +10,7 @@ const NewsCard = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["all-news"],
     queryFn: () => getAllNews(),
-    onError: (error) => {
-      console.log("Error");
-    },
+    onError: (error) => {},
   });
 
   return (

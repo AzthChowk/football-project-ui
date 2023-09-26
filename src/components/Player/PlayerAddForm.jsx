@@ -84,10 +84,9 @@ export default function PlayerAddForm() {
     const fetchTeams = async () => {
       try {
         const teamList = await axios.post("http://localhost:9090/teams");
-        console.log(teamList.data);
+
         setTeams(teamList.data);
       } catch (error) {
-        console.log(error.message);
         setError(true);
       }
     };
@@ -174,14 +173,12 @@ export default function PlayerAddForm() {
               data.append("file", playerImage);
               data.append("upload_preset", "vcyz8tr5");
               data.append("cloud_name", cloudName);
-              console.log("data here", data);
 
               try {
                 const res = await axios.post(
                   `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
                   data
                 );
-                console.log("res here", res);
 
                 imageUrl = res.data.secure_url;
               } catch (error) {

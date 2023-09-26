@@ -11,7 +11,7 @@ const LatestNews = () => {
     queryKey: ["latest-news"],
     queryFn: () => getLatestNews(),
   });
-  console.log(latestNewsData?.data);
+
   return (
     <Grid container>
       {latestNewsData?.data?.map((item, index) => {

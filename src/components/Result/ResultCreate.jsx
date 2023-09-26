@@ -40,7 +40,6 @@ const ResultCreate = () => {
       dispatch(openSuccessSnackbar(response?.data?.message));
     },
     onError: (error) => {
-      console.log("error", error);
       dispatch(openErrorSnackbar(error?.response?.data?.message));
     },
   });
@@ -54,7 +53,6 @@ const ResultCreate = () => {
     queryKey: ["opponent-teams"],
     queryFn: () => getTeamsList(),
   });
-  console.log(opponentTeams);
 
   const handleChange = (event) => {
     setAge(event.target.value);

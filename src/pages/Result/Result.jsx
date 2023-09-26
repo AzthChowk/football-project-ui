@@ -17,9 +17,8 @@ const Result = () => {
     queryKey: ["result-list"],
     queryFn: () => getResults(),
   });
-  console.log(data);
+
   const id = uuidv4();
-  console.log(id);
 
   return (
     <Box className="container">

@@ -11,7 +11,7 @@ const FeaturedNews = () => {
     queryKey: ["featured-news"],
     queryFn: () => getFeaturedNews(),
   });
-  console.log(featuredNewsData?.data);
+
   return (
     <Box>
       <Grid container spacing={0.25}>
