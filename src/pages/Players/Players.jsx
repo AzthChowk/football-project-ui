@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
-  console.log(players);
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -57,9 +56,6 @@ const Players = () => {
         <div>
           <input type="search" name="search" />
           <button>Search</button>
-        </div>
-        <div>
-          <Link to="/player/add">Add Player</Link>
         </div>
       </div>
       {/* ================| PLAYERS TABLE |===================== */}
