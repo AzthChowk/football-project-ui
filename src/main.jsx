@@ -36,6 +36,7 @@ import NewsRoot from "./pages/News/NewsRoot";
 import ReporterNews from "./pages/News/ReporterNews";
 import PointTable from "./pages/PointTable/PointTable";
 import store from "./redux-store/store";
+import ReporterRouteProtect from "./routeProtect/ReporterRouteProtect";
 
 const router = createBrowserRouter([
   {
@@ -83,7 +84,11 @@ const router = createBrowserRouter([
       },
       {
         path: "reporter",
-        element: <NewsRoot />,
+        element: (
+          <ReporterRouteProtect>
+            <NewsRoot />,
+          </ReporterRouteProtect>
+        ),
         children: [
           {
             path: "news",
