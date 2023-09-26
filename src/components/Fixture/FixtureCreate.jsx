@@ -92,7 +92,7 @@ const FixtureCreate = () => {
             .min(1, "Match number must be at least and greater than 1.")
             .required("Match number is required."),
           time: Yup.string(),
-          date: Yup.date(),
+          date: Yup.string(),
           playGround: Yup.string()
             .min(10)
             .max(50, "Playground must be at least 50 characters or less.")
@@ -105,7 +105,6 @@ const FixtureCreate = () => {
           ),
         })}
         onSubmit={(values) => {
-          console.log(values);
           createMatchesMutation.mutate(values);
         }}
       >
@@ -242,7 +241,7 @@ const FixtureCreate = () => {
                   <div>{formik.errors.date}</div>
                 ) : null}
               </Grid>
-              {/* <Grid
+              <Grid
                 item
                 xs={12}
                 sm={6}
@@ -262,21 +261,7 @@ const FixtureCreate = () => {
                 {formik.touched.time && formik.errors.time ? (
                   <div>{formik.errors.time}</div>
                 ) : null}
-              </Grid> */}
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["TimePicker", "TimePicker"]}>
-                  <TimePicker
-                    name="time"
-                    label="Time"
-                    value={time}
-                    onChange={(time) => setValue(time)}
-                    {...formik.getFieldProps("time")}
-                  />
-                  {formik.touched.time && formik.errors.time ? (
-                    <div>{formik.errors.time}</div>
-                  ) : null}
-                </DemoContainer>
-              </LocalizationProvider>
+              </Grid>
 
               <Button variant="contained" type="submit" sx={{ margin: 1 }}>
                 create match
