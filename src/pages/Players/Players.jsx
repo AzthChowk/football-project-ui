@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "./players-display-page.css";
-import axios from "axios";
-import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import React, { useState } from "react";
+import { getPlayersList } from "../../../lib/apis/players-apis";
+import "./players-display-page.css";
+import { useQuery } from "react-query";
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
-  useEffect(() => {
-    const fetchPlayers = async () => {
-      try {
-        const playerList = await axios.post("http://localhost:9090/players");
-        console.log(playerList.data);
-        setPlayers(playerList.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchPlayers();
-  }, []);
-
+  const { data } = useQuery({
+    queryKey: ["all-players"],
+    queryFn: () => getPlayersList(),
+  });
+  console.log(data?.data);
   // ========table from mui ============
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -73,7 +65,7 @@ const Players = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {players.map((item) => (
+              {data?.data?.map((item) => (
                 <StyledTableRow key={item._id}>
                   <StyledTableCell>
                     <img src={item.playerImageUrl} alt="" />
