@@ -1,10 +1,11 @@
 import React from "react";
+import { Box } from "@mui/material";
 
 const DashboardIndex = () => {
   return (
-    <div>
+    <Box>
       <h1>this is admin panel dashboard.</h1>
-    </div>
+    </Box>
   );
 };
 
