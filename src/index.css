@@ -9,11 +9,7 @@
   font-family: "Nunito sans", sans-serif !important;
 }
 
-#root {
-  margin: auto;
-}
 body {
-  color: #37003c;
 }
 button {
   border-radius: 5px;
@@ -33,6 +29,7 @@ button:hover {
 .container {
   max-width: 1536px;
   margin: auto;
+  width: 100%;
 }
 
 a {

@@ -1,15 +1,9 @@
 .navbar {
-  /* background-color: #fcd7ff; */
-  background: linear-gradient(-135deg, #37003c, #001261);
+  background-color: #09203e;
+  /* background: linear-gradient(-135deg, #37003c, #001261); */
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   color: #fff;
-  /* background-image: url("https://www.seekpng.com/png/detail/70-706758_clip-art-black-and-white-download-ink-vector.png"); */
-  background-blend-mode: darken;
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  z-index: 10000;
+  z-index: 1000;
 }
 
 .top-header-cts {

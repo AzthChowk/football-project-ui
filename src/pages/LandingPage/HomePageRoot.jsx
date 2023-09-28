@@ -3,15 +3,22 @@ import Header from "../../layouts/Header";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 import CustomSnackbar from "../../components/CustomUi/CustomSnackbar";
+import Footer from "../../layouts/Footer";
 
 const HomePageRoot = () => {
   return (
     <>
       <CustomSnackbar />
+      <Box>
+        <Header />
+      </Box>
 
-      <Header />
-
-      <Outlet />
+      <Box sx={{ minHeight: "100vh" }}>
+        <Outlet />
+      </Box>
+      <Box sx={{ marginTop: "auto" }}>
+        <Footer />
+      </Box>
     </>
   );
 };

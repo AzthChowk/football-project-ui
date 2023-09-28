@@ -17,7 +17,7 @@ const Teams = () => {
         Teams
       </Typography>
 
-      <Grid container sx={{ textAlign: "center" }}>
+      <Grid container sx={{ textAlign: "center", display: "flex" }}>
         {data?.data.map((item, index) => {
           return <TeamCard {...item} key={item._id} />;
         })}
