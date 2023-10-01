@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { getPlayersList } from "../../../lib/apis/players-apis";
 import "./players-display-page.css";
 import { useQuery } from "react-query";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -40,18 +41,31 @@ const Players = () => {
   }));
 
   return (
-    <div className="container players-display-page">
-      <div className="players-display-page-header">
-        <div>
-          <h1>Players</h1>
-        </div>
-        <div>
-          <input type="search" name="search" />
-          <button>Search</button>
-        </div>
-      </div>
+    <Box className="container players-display-page">
+      <Grid
+        container
+        sx={{
+          marginTop: { xs: 0, sm: 0, md: 5, lg: 5 },
+        }}
+      >
+        <Grid item xs={12} sm={4}>
+          <Typography variant="h4" sx={{ fontWeight: 900, padding: "10px" }}>
+            Players
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <TextField
+            type="search"
+            name="search"
+            sx={{ width: "300px", padding: "0 10px" }}
+          />
+          <Button variant="contained" sx={{ padding: 2 }}>
+            Search
+          </Button>
+        </Grid>
+      </Grid>
       {/* ================| PLAYERS TABLE |===================== */}
-      <div className="players-display-table">
+      <Box className="players-display-table" sx={{ padding: 1 }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -90,8 +104,8 @@ const Players = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
