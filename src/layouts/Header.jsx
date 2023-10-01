@@ -24,7 +24,7 @@ const Header = () => {
           <img
             src="https://www.skylineelitesc.org/wp-content/uploads/2020/03/Skyline-Elite-Logo-RGB.png"
             alt="Football"
-            style={{ width: "60px" }}
+            style={{ width: "50px" }}
           />
         </Box>
 
