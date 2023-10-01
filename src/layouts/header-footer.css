@@ -45,7 +45,7 @@
   text-transform: uppercase;
 }
 .navbar-menu a:hover {
-  color: #000000;
+  color: #ffd000;
 }
 .active {
   color: rgb(255, 0, 0);
@@ -84,7 +84,7 @@
     text-align: center;
   }
   .menu-item-res ul li:hover {
-    background-color: rgb(221, 221, 221);
+    background-color: black;
   }
   .top-header-cts {
     display: none;
