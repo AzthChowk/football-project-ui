@@ -21,7 +21,11 @@ const Header = () => {
       </Box>
       <Box className="container navbar-menu">
         <Box className="logo">
-          <img src="public/logo.svg" alt="Football" style={{ width: "60px" }} />
+          <img
+            src="https://www.skylineelitesc.org/wp-content/uploads/2020/03/Skyline-Elite-Logo-RGB.png"
+            alt="Football"
+            style={{ width: "60px" }}
+          />
         </Box>
 
         <Box className={menuOpen ? "menu-item-res" : "menu-item"}>
