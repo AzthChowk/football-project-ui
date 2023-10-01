@@ -10,10 +10,11 @@ const Teams = () => {
     queryKey: ["all-teams"],
     queryFn: () => getTeamsList(),
   });
+  console.log(data);
 
   return (
-    <Box className="container">
-      <Typography variant="h4" sx={{ padding: "20px 0", fontWeight: 700 }}>
+    <Box className="container" sx={{ padding: 1 }}>
+      <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
         Teams
       </Typography>
 

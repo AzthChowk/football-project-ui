@@ -21,8 +21,8 @@ const Result = () => {
   const id = uuidv4();
 
   return (
-    <Box className="container">
-      <Typography variant="h2" sx={{ margin: 2 }}>
+    <Box className="container" sx={{ padding: 1 }}>
+      <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
         Results
       </Typography>
 

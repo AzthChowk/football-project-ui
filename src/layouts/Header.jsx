@@ -1,14 +1,16 @@
 import { Typography, Button } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./header-footer.css";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <nav className="navbar">
       <Box className="top-header">
@@ -19,9 +21,10 @@ const Header = () => {
       </Box>
       <Box className="container navbar-menu">
         <Box className="logo">
-          <Typography>Football X - League</Typography>
+          <img src="public/logo.svg" alt="Football" style={{ width: "60px" }} />
         </Box>
-        <Box className="menu-item">
+
+        <Box className={menuOpen ? "menu-item-res" : "menu-item"}>
           <ul>
             <li>
               <NavLink
@@ -105,8 +108,25 @@ const Header = () => {
             </li>
           </ul>
         </Box>
+        {/* ========hamburger menu icons -================= */}
         <Box className="hamburger-menu">
-          <MenuIcon />
+          {menuOpen ? (
+            <>
+              <>
+                <CloseIcon
+                  style={hamburgerMenuStyle}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                />
+              </>
+            </>
+          ) : (
+            <>
+              <MenuIcon
+                style={hamburgerMenuStyle}
+                onClick={() => setMenuOpen(!menuOpen)}
+              />
+            </>
+          )}
         </Box>
       </Box>
     </nav>
@@ -114,3 +134,7 @@ const Header = () => {
 };
 
 export default Header;
+
+const hamburgerMenuStyle = {
+  cursor: "pointer",
+};

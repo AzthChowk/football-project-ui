@@ -108,7 +108,6 @@ const PointTable = () => {
                             style={{
                               width: "40px",
                               objectFit: "contain",
-                              
                             }}
                           />
                           <Typography sx={{ fontWeight: 700 }}>

@@ -10,9 +10,9 @@ const FixturePage = () => {
     queryFn: () => getFixtureList(),
   });
   return (
-    <Box className="container">
-      <Typography variant="h2" sx={{ margin: 2 }}>
-        Fixtures
+    <Box className="container" sx={{ padding: 1 }}>
+      <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
+        Fixture
       </Typography>
       {data?.data.map((item, index) => {
         return <FixtureCard key={index} {...item} />;

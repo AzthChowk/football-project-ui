@@ -24,6 +24,7 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import AddLinkIcon from "@mui/icons-material/AddLink";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
 
 import LogOut from "../../components/LogOut";
 
@@ -65,11 +66,7 @@ const DashboardRoot = () => {
         <nav>
           <List>
             <ListItem disablePadding>
-              <Avatar
-                alt="Cindy Baker"
-                src="https://i.pinimg.com/originals/df/25/e3/df25e39d7400f1bbcb7adf695063faaa.jpg"
-                sx={{ width: 56, height: 56, margin: "20px" }}
-              />
+              <Avatar sx={{ width: 56, height: 56, margin: "20px" }} />
             </ListItem>
             <ListItem disablePadding>
               <NavLink
@@ -119,7 +116,7 @@ const DashboardRoot = () => {
               >
                 <ListItemButton>
                   <ListItemIcon>
-                    <GroupsIcon />
+                    <Diversity3Icon />
                   </ListItemIcon>
                   <ListItemText primary="Teams" />
                 </ListItemButton>
@@ -142,6 +139,7 @@ const DashboardRoot = () => {
             </ListItem>
           </List>
         </nav>
+
         <Divider />
         <nav>
           <List>
@@ -187,6 +185,26 @@ const DashboardRoot = () => {
                     <TableRowsIcon />
                   </ListItemIcon>
                   <ListItemText primary="Point Table" />
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+          </List>
+        </nav>
+        <Divider />
+        <nav>
+          <List>
+            <ListItem disablePadding>
+              <NavLink
+                to="users"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <WorkspacePremiumIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Users" />
                 </ListItemButton>
               </NavLink>
             </ListItem>

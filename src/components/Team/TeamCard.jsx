@@ -50,6 +50,7 @@ const TeamCard = ({
       />
 
       <Typography>Address: {address}</Typography>
+
       <Typography>Website : {url}</Typography>
       <Typography>Manager : {manager}</Typography>
       <Typography>Coach : {coach}</Typography>

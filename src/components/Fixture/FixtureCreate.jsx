@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 
 import dayjs from "dayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 import {
   Box,
-  Grid,
-  TextField,
-  Typography,
   Button,
   FormControl,
+  Grid,
   InputLabel,
-  Select,
   MenuItem,
+  Select,
+  TextField,
+  Typography,
 } from "@mui/material";
 
 import { Formik } from "formik";
@@ -23,15 +19,16 @@ import * as Yup from "yup";
 
 // react query
 import { useMutation, useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createMatches } from "../../../lib/apis/fixtures-apis";
 
+import { getTeamsList } from "../../../lib/apis/teams-apis";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
 } from "../../redux-store/snackbarSlice";
-import { getTeamsList } from "../../../lib/apis/teams-apis";
+import { matchStages } from "../../utils/constants";
 
 const FixtureCreate = () => {
   const [teams, setTeams] = useState([]);
@@ -90,6 +87,7 @@ const FixtureCreate = () => {
             .integer("Match number must be an integer value.")
             .min(1, "Match number must be at least and greater than 1.")
             .required("Match number is required."),
+          matchStage: Yup.string().required("Match stage is required."),
           time: Yup.string(),
           date: Yup.string(),
           playGround: Yup.string()
@@ -131,6 +129,38 @@ const FixtureCreate = () => {
                   <div>{formik.errors.matchNumber}</div>
                 ) : null}
               </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                xl={2}
+                sx={{ padding: 1, width: "500px" }}
+              >
+                <FormControl fullWidth>
+                  <InputLabel>Match Stage</InputLabel>
+                  <Select
+                    required
+                    value={matchStages}
+                    label="Match Stage"
+                    name="matchStage"
+                    onChange={handleChange}
+                    {...formik.getFieldProps("matchStage")}
+                  >
+                    {matchStages?.map((item, index) => {
+                      return (
+                        <MenuItem key={index} value={item}>
+                          <Typography>{item}</Typography>
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+                {formik.touched.matchStage && formik.errors.matchStage ? (
+                  <div>{formik.errors.matchStage}</div>
+                ) : null}
+              </Grid>
 
               <Grid
                 item
@@ -154,7 +184,7 @@ const FixtureCreate = () => {
                     {opponentTeams?.data?.map((item) => {
                       return (
                         <MenuItem key={item._id} value={item._id}>
-                          <h4>{item.teamName}</h4>
+                          <Typography>{item.teamName}</Typography>
                         </MenuItem>
                       );
                     })}
@@ -186,7 +216,7 @@ const FixtureCreate = () => {
                     {opponentTeams?.data?.map((item) => {
                       return (
                         <MenuItem key={item._id} value={item._id}>
-                          <h4>{item.teamName}</h4>
+                          <Typography>{item.teamName}</Typography>
                         </MenuItem>
                       );
                     })}

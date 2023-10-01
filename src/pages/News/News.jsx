@@ -8,7 +8,7 @@ const News = () => {
   return (
     <Box className="container news-page" sx={{ padding: 2 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography variant="h4" sx={{ fontWeight: 700 }}>
+        <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
           News
         </Typography>
         {/* <Link to="/news/add">Add News</Link> */}

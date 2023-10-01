@@ -40,61 +40,65 @@ const LoginPage = () => {
   });
 
   return (
-    <Box className="login-card">
-      <Typography variant="h5" sx={{ fontWeight: 700 }}>
-        Login
-      </Typography>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={Yup.object({
-          password: Yup.string().required("Password is required."),
+    <>
+      <Box sx={{ margin: 10 }}></Box>
 
-          email: Yup.string()
-            .email("Invalid email address")
-            .required("Email is required."),
-        })}
-        onSubmit={async (values) => {
-          loginMutation.mutate(values);
-        }}
-      >
-        {(formik) => (
-          <form onSubmit={formik.handleSubmit}>
-            <Box sx={{ padding: "10px 0" }}>
-              <TextField
-                sx={{ width: "100%" }}
-                label="Email"
-                type="email"
-                name="email"
-                {...formik.getFieldProps("email")}
-              />
+      <Box className="login-card">
+        <Typography variant="h5" sx={{ fontWeight: 700 }}>
+          Login
+        </Typography>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={Yup.object({
+            password: Yup.string().required("Password is required."),
 
-              {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
-              ) : null}
-            </Box>
-            <Box sx={{ padding: "10px 0" }}>
-              <TextField
-                sx={{ width: "100%" }}
-                label="Password"
-                type="password"
-                name="password"
-                {...formik.getFieldProps("password")}
-              />
+            email: Yup.string()
+              .email("Invalid email address")
+              .required("Email is required."),
+          })}
+          onSubmit={async (values) => {
+            loginMutation.mutate(values);
+          }}
+        >
+          {(formik) => (
+            <form onSubmit={formik.handleSubmit}>
+              <Box sx={{ padding: "10px 0" }}>
+                <TextField
+                  sx={{ width: "100%" }}
+                  label="Email"
+                  type="email"
+                  name="email"
+                  {...formik.getFieldProps("email")}
+                />
 
-              {formik.touched.password && formik.errors.password ? (
-                <div>{formik.errors.password}</div>
-              ) : null}
-            </Box>
-            <Box>
-              <Button type="submit">Log In</Button>
-              <Link to="/register">
-                <Typography>No Account? Create one</Typography>
-              </Link>
-            </Box>
-          </form>
-        )}
-      </Formik>
-    </Box>
+                {formik.touched.email && formik.errors.email ? (
+                  <div>{formik.errors.email}</div>
+                ) : null}
+              </Box>
+              <Box sx={{ padding: "10px 0" }}>
+                <TextField
+                  sx={{ width: "100%" }}
+                  label="Password"
+                  type="password"
+                  name="password"
+                  {...formik.getFieldProps("password")}
+                />
+
+                {formik.touched.password && formik.errors.password ? (
+                  <div>{formik.errors.password}</div>
+                ) : null}
+              </Box>
+              <Box>
+                <Button type="submit">Log In</Button>
+                <Link to="/register">
+                  <Typography>No Account? Create one</Typography>
+                </Link>
+              </Box>
+            </form>
+          )}
+        </Formik>
+      </Box>
+    </>
   );
 };
 

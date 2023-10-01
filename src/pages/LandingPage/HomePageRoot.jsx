@@ -9,7 +9,7 @@ const HomePageRoot = () => {
   return (
     <>
       <CustomSnackbar />
-      <Box>
+      <Box sx={{ paddingBottom: { xs: 8, sm: 10, md: 10, lg: 12 } }}>
         <Header />
       </Box>
 
