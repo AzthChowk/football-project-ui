@@ -37,21 +37,17 @@ const SummaryPointTable = () => {
         <TableBody>
           {data?.data?.map((item, index) => {
             return (
-              <>
-                <TableRow
-                  key={index}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell sx={{ fontWeight: 700 }}>
-                    {item.teamName}
-                  </TableCell>
-                  <TableCell align="center">{item.played}</TableCell>
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell>{index + 1}</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>{item.teamName}</TableCell>
+                <TableCell align="center">{item.played}</TableCell>
 
-                  <TableCell align="center">{item.goalDifference}</TableCell>
-                  <TableCell align="center">{item.points}</TableCell>
-                </TableRow>
-              </>
+                <TableCell align="center">{item.goalDifference}</TableCell>
+                <TableCell align="center">{item.points}</TableCell>
+              </TableRow>
             );
           })}
         </TableBody>

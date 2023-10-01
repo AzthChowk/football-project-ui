@@ -74,7 +74,7 @@ const Players = () => {
                 <StyledTableCell align="left">Name</StyledTableCell>
                 <StyledTableCell align="left">Position</StyledTableCell>
                 <StyledTableCell align="left">Nationality</StyledTableCell>
-                <StyledTableCell align="left">DOB</StyledTableCell>
+                <StyledTableCell align="left">Age</StyledTableCell>
                 <StyledTableCell align="left">Current Club</StyledTableCell>
               </TableRow>
             </TableHead>
@@ -94,6 +94,7 @@ const Players = () => {
                     {item.nationality}
                   </StyledTableCell>
                   <StyledTableCell align="left">
+                    {/* {(today - new Date(item.dob)) / 365.25} */}
                     {item.dob.split("T")[0]}
                   </StyledTableCell>
                   <StyledTableCell align="left">
