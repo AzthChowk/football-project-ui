@@ -21,6 +21,7 @@ import {
 } from "@mui/material";
 import SummaryCard from "../../components/SummaryCard";
 import { randomId } from "../../utils/utils";
+import DeleteTeamBtn from "../../components/DeleteTeamBtn";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -147,7 +148,7 @@ const Teams = () => {
                         </TableCell>
                         <TableCell>
                           <Button>Edit</Button>
-                          <Button>Delete</Button>
+                          <DeleteTeamBtn teamId={item._id} />
                         </TableCell>
                       </TableRow>
                     );

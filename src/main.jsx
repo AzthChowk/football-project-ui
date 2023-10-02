@@ -37,6 +37,7 @@ import ReporterNews from "./pages/News/ReporterNews";
 import PointTable from "./pages/PointTable/PointTable";
 import store from "./redux-store/store";
 import ReporterRouteProtect from "./routeProtect/ReporterRouteProtect";
+import EditNews from "./pages/News/EditNews";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
           {
             path: "news/add",
             element: <AddNews />,
+          },
+          {
+            path: "news/edit/:id",
+            element: <EditNews />,
           },
         ],
       },

@@ -1,24 +1,22 @@
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
-import { Button, Grid, Box, Stack } from "@mui/material";
-import MuiAlert from "@mui/material/Alert";
+import { Box, Button, Grid, Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import * as Yup from "yup";
 
-import "./text-area-full-news.css";
 import axios from "axios";
+import { useMutation, useQuery } from "react-query";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
 } from "../../redux-store/snackbarSlice";
-import { useMutation } from "react-query";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import "./text-area-full-news.css";
+import { editNews, getFullNews } from "../../../lib/apis/news-apis";
 
-import { addNews } from "../../../lib/apis/news-apis";
-
-const NewsAddForm = () => {
+const NewsEditForm = () => {
   const [success, setSuccess] = useState(false);
   const [failed, setFailed] = useState(false);
   const [open, setOpen] = useState(false);
@@ -26,14 +24,17 @@ const NewsAddForm = () => {
   const [newsImg, setNewImg] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
+  const newsId = params.id;
+  console.log(newsId);
 
-  const addNewsMutation = useMutation({
-    mutationKey: ["add-news"],
-    mutationFn: (values) => addNews(values),
+  const editNewsMutation = useMutation({
+    mutationKey: ["edit-news"],
+    mutationFn: (values) => editNews(newsId, values),
     onSuccess: (response) => {
       dispatch(
         openSuccessSnackbar(
-          response?.data?.message || "News added successfully."
+          response?.data?.message || "News updated successfully."
         )
       );
       navigate("/reporter/news");
@@ -41,23 +42,31 @@ const NewsAddForm = () => {
     onError: (error) => {
       dispatch(
         openErrorSnackbar(
-          error?.message || "Something went wrong, cannot add news."
+          error?.message || "Something went wrong, cannot update news."
         )
       );
     },
   });
 
+  const { isLoading, data: oldNewsData } = useQuery({
+    queryKey: ["full-news"],
+    queryFn: () => getFullNews(newsId),
+    onError: (error) => {},
+  });
+  console.log(oldNewsData?.data);
+
   return (
     <Grid>
       <Formik
+        enableReinitialize
         initialValues={{
-          newsTitle: "",
-          newsAuthor: "",
-          fullNews: "",
-          newsHighlights: "",
-          isFeaturedNews: "",
-          newsImgUrl: "",
-          category: "",
+          newsTitle: oldNewsData?.data?.newsTitle || "",
+          newsAuthor: oldNewsData?.data?.newsAuthor || "",
+          fullNews: oldNewsData?.data?.fullNews || "",
+          newsHighlights: oldNewsData?.data?.newsHighlights || "",
+          isFeaturedNews: oldNewsData?.data?.isFeaturedNews || "",
+          newsImgUrl: oldNewsData?.data?.newsImgUrl || "",
+          category: oldNewsData?.data?.category || "",
         }}
         validationSchema={Yup.object({
           newsTitle: Yup.string().required("News title is required."),
@@ -81,7 +90,7 @@ const NewsAddForm = () => {
             data.append("cloud_name", cloudName);
 
             try {
-              const res = await axios.post(
+              const res = await axios.put(
                 `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
                 data
               );
@@ -95,7 +104,7 @@ const NewsAddForm = () => {
           values.newsAuthor = localStorage.getItem("userId");
           values.newsImgUrl = imageUrl;
 
-          addNewsMutation.mutate(values);
+          editNewsMutation.mutate(values);
         }}
       >
         {(formik) => (
@@ -235,23 +244,21 @@ const NewsAddForm = () => {
                   </Button>
                 </Stack>
                 <Box sx={{ width: "100%", padding: 1 }}>
-                  {localUrl && (
-                    <img
-                      src={localUrl}
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                        objectFit: "cover",
-                        border: "1px solid #999",
-                        borderRadius: "5px",
-                      }}
-                    />
-                  )}
+                  <img
+                    src={localUrl || oldNewsData?.data?.newsImgUrl}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                      border: "1px solid #999",
+                      borderRadius: "5px",
+                    }}
+                  />
                 </Box>
               </Grid>
               <Grid>
                 <Button variant="contained" type="submit">
-                  Add News
+                  Update News
                 </Button>
               </Grid>
             </Grid>
@@ -262,4 +269,4 @@ const NewsAddForm = () => {
   );
 };
 
-export default NewsAddForm;
+export default NewsEditForm;

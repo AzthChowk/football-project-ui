@@ -7,7 +7,7 @@ const NewsRoot = () => {
   const userEmail = localStorage.getItem("email");
 
   return (
-    <Box className="container">
+    <Box className="container" sx={{ padding: 2 }}>
       <Grid
         container
         sx={{
@@ -29,20 +29,21 @@ const NewsRoot = () => {
           }}
         >
           <Avatar />
-          <Typography sx={{ wordBreak: "break-all" }}>Hello!</Typography>
-          <Typography sx={{ wordBreak: "break-all" }}>{userEmail}</Typography>
-          <Typography> Profile </Typography>
-          <Typography>
-            <LogOut />
+          <Typography sx={{ wordBreak: "break-all", padding: 1 }}>
+            Hello!
           </Typography>
+          <Typography sx={{ wordBreak: "break-all", padding: 1 }}>
+            {userEmail}
+          </Typography>
+          <Typography sx={{ padding: 1 }}> Profile </Typography>
           <Divider />
           <Link to="news">
-            <Typography> News </Typography>
+            <Typography sx={{ padding: 1 }}> News </Typography>
           </Link>
           <Link to="news/add">
-            <Typography> Add News </Typography>
+            <Typography sx={{ padding: 1 }}> Add News </Typography>
           </Link>
-          <Typography> Edit News </Typography>
+          <LogOut />
         </Grid>
         <Grid item xs={12} sm={8} md={8} lg={9} xl={9}>
           <Outlet />

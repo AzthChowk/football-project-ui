@@ -74,6 +74,7 @@ export default function PlayerAddForm() {
       dispatch(openSuccessSnackbar(res?.data?.message));
       navigate("/admin/players");
       handleClose();
+      queryClient.invalidateQueries("players-data");
     },
     onError: (res) => {
       dispatch(openErrorSnackbar(res?.data?.message));

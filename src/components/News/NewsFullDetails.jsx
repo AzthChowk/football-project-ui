@@ -1,9 +1,5 @@
-import { Box, Chip, Typography, Grid } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
-
-import { useQuery } from "react-query";
-import { getFullNews } from "../../../lib/apis/news-apis";
-import { useParams } from "react-router-dom";
 
 const NewsFullDetails = (props) => {
   return (
@@ -22,7 +18,7 @@ const NewsFullDetails = (props) => {
 
       <img src={props?.data?.newsImgUrl} alt="" style={{ width: "100%" }} />
       <Typography sx={{ fontWeight: 700 }}>
-        {props?.data?.newsAuthor} | {props?.data?.addedDate.split("T")[0]}
+        {props?.data?.newsAuthor} | {props?.data?.addedDate}
       </Typography>
       <Typography sx={{ padding: "10px 0" }}>
         {props?.data?.fullNews}

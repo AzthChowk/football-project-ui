@@ -2,16 +2,14 @@ import React from "react";
 import { useQuery, useQueryClient } from "react-query";
 
 // MUI Table
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import TablePagination from "@mui/material/TablePagination";
-import { Button } from "@mui/material";
-import { Divider } from "@mui/material";
+import TableRow from "@mui/material/TableRow";
 
 //components
 import SearchIcon from "@mui/icons-material/Search";
@@ -21,6 +19,7 @@ import { getPlayersList } from "../../../lib/apis/players-apis";
 import PlayerAddForm from "../../components/Player/PlayerAddForm";
 import PlayerEditForm from "../../components/Player/PlayerEditForm";
 import SummaryCard from "../../components/SummaryCard";
+import DeletePlayerBtn from "../../components/DeletePlayerBtn";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -173,9 +172,15 @@ const Players = () => {
                           <TableCell sx={{ padding: "2px" }}>
                             {item.clubName}
                           </TableCell>
-                          <TableCell sx={{ padding: "2px" }}>
+                          <TableCell
+                            sx={{
+                              padding: "2px",
+                              display: "flex",
+                              gap: "5px",
+                            }}
+                          >
                             <PlayerEditForm playerId={item._id} />
-                            <Button>Delete</Button>
+                            <DeletePlayerBtn playerId={item._id} />
                           </TableCell>
                         </TableRow>
                       );

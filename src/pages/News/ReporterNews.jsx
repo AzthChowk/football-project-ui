@@ -11,6 +11,7 @@ const ReporterNews = () => {
     queryKey: ["reporter-news"],
     queryFn: () => getReporterNews({ userId }),
   });
+  console.log(data);
 
   return (
     <Grid container sx={{ display: "flex" }}>
