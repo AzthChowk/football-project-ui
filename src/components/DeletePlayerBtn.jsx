@@ -10,6 +10,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { useMutation, useQueryClient } from "react-query";
 import { deletePlayer } from "../../lib/apis/players-apis";
+import { useDispatch } from "react-redux";
+import { openSuccessSnackbar } from "../redux-store/snackbarSlice";
 
 //icons
 
@@ -32,12 +34,15 @@ const DeletePlayerBtn = ({ playerId }) => {
   const id = open ? "simple-popover" : undefined;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
   const deletePlayerMutation = useMutation({
     mutationKey: ["delete-player"],
     mutationFn: () => deletePlayer(playerId),
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log("response", response);
+      dispatch(openSuccessSnackbar(response?.data?.message || "Deleted"));
       queryClient.invalidateQueries("players-data");
     },
   });

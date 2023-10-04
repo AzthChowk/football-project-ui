@@ -7,6 +7,8 @@ import { Button, Grid, Popover, Stack, Typography } from "@mui/material";
 // ===menu====
 import { useMutation, useQueryClient } from "react-query";
 import { deleteTeam } from "../../lib/apis/teams-apis";
+import { openSuccessSnackbar } from "../redux-store/snackbarSlice";
+import { useDispatch } from "react-redux";
 
 //icons
 
@@ -29,12 +31,19 @@ const DeleteTeamBtn = ({ teamId }) => {
   const id = open ? "simple-popover" : undefined;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
   const deleteTeamMutation = useMutation({
     mutationKey: ["delete-team"],
     mutationFn: () => deleteTeam(teamId),
-    onSuccess: () => {
+    onSuccess: (response) => {
+      dispatch(
+        openSuccessSnackbar(
+          response?.data?.message || "Team is deleted successfully."
+        )
+      );
+
       queryClient.invalidateQueries("teams-list");
     },
   });

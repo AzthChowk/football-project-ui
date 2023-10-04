@@ -21,6 +21,8 @@ import SummaryCard from "../../../components/SummaryCard";
 import DeletePlayerBtn from "../../../components/DeletePlayerBtn";
 import PlayerEditForm from "./PlayerEditForm";
 import PlayerAddForm from "./PlayerAddForm";
+import { useDispatch } from "react-redux";
+import { openSuccessSnackbar } from "../../../redux-store/snackbarSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,16 +66,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Players = () => {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
   // react - query
   const { isLoading, isSuccess, isError, error, data } = useQuery({
     queryKey: ["players-data"],
     queryFn: () => getPlayersList(),
-    onSuccess: (res) => {},
   });
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const pageCounter = data?.data?.length;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -173,13 +177,7 @@ const Players = () => {
                           <TableCell sx={{ padding: "2px" }}>
                             {item.clubName}
                           </TableCell>
-                          <TableCell
-                            sx={{
-                              padding: "2px",
-                              display: "flex",
-                              gap: "5px",
-                            }}
-                          >
+                          <TableCell>
                             <PlayerEditForm playerId={item._id} />
                             <DeletePlayerBtn playerId={item._id} />
                           </TableCell>
@@ -193,9 +191,9 @@ const Players = () => {
         </TableContainer>
         <TablePagination
           sx={{ display: "flex", justifyContent: "flex-start" }}
-          rowsPerPageOptions={[10, 25, 100]}
+          rowsPerPageOptions={[10, 20, 50]}
           component="div"
-          count={data?.data?.length}
+          count={pageCounter}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
