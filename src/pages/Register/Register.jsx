@@ -235,7 +235,7 @@ const Register = () => {
                       required
                       type="text"
                       name="role"
-                      label="Role"
+                      label="Role (Administrator / Reporter)"
                       variant="outlined"
                       sx={{ width: "100%" }}
                       {...formik.getFieldProps("role")}
