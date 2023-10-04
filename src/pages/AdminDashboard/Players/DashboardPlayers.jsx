@@ -15,11 +15,12 @@ import TableRow from "@mui/material/TableRow";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { alpha, styled } from "@mui/material/styles";
-import { getPlayersList } from "../../../lib/apis/players-apis";
-import PlayerAddForm from "../../components/Player/PlayerAddForm";
-import PlayerEditForm from "../../components/Player/PlayerEditForm";
-import SummaryCard from "../../components/SummaryCard";
-import DeletePlayerBtn from "../../components/DeletePlayerBtn";
+import { getPlayersList } from "../../../../lib/apis/players-apis";
+
+import SummaryCard from "../../../components/SummaryCard";
+import DeletePlayerBtn from "../../../components/DeletePlayerBtn";
+import PlayerEditForm from "./PlayerEditForm";
+import PlayerAddForm from "./PlayerAddForm";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

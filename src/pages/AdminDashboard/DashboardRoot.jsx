@@ -27,6 +27,7 @@ import AddLinkIcon from "@mui/icons-material/AddLink";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 
 import LogOut from "../../components/LogOut";
+import CustomSnackbar from "../../components/CustomUi/CustomSnackbar";
 
 const DashboardRoot = () => {
   const [expand, setExpand] = React.useState(true);
@@ -54,6 +55,8 @@ const DashboardRoot = () => {
   };
   return (
     <Box>
+      <CustomSnackbar />
+
       <Box
         sx={{
           height: "100vh",

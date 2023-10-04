@@ -17,13 +17,13 @@ import axios from "axios";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { $axios } from "../../../lib/axios";
-import { countries } from "../Countries.js";
+import { $axios } from "../../../../lib/axios";
+import { countries } from "../../../components/Countries.js";
 
 import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
-import { getPlayerDetails } from "../../../lib/apis/players-apis";
+import { getPlayerDetails } from "../../../../lib/apis/players-apis";
 import "./add-player-form.css";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -54,11 +54,10 @@ const PlayerEditForm = (props) => {
 
   // const playerId = params.id;
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data: playerDetails } = useQuery({
     queryKey: ["player-details"],
     queryFn: () => getPlayerDetails(props.playerId),
   });
-  const playerData = data?.data;
 
   useEffect(() => {
     const fetchTeams = async () => {

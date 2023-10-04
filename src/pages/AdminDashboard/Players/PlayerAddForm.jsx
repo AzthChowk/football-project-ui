@@ -17,7 +17,7 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { countries } from "../Countries.js";
+import { countries } from "../../../components/Countries.js";
 
 import { Stack, Typography } from "@mui/material";
 import { useEffect } from "react";
@@ -27,11 +27,11 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addPlayer } from "../../../lib/apis/players-apis";
+import { addPlayer } from "../../../../lib/apis/players-apis.js";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
-} from "../../redux-store/snackbarSlice";
+} from "../../../redux-store/snackbarSlice.js";
 import "./add-player-form.css";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({

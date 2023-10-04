@@ -13,16 +13,10 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <nav className="navbar">
-      <Box className="top-header">
-        <Box className="container top-header-cts">
-          <FacebookIcon sx={{ mr: 2 }} />
-          <TwitterIcon />
-        </Box>
-      </Box>
       <Box className="container navbar-menu">
         <Box className="logo">
           <img
-            src="https://www.skylineelitesc.org/wp-content/uploads/2020/03/Skyline-Elite-Logo-RGB.png"
+            src="https://lirp.cdn-website.com/ebe46285/dms3rep/multi/opt/69a1870e9f40e12f71bf3f3e5fea7214-640w.png"
             alt="Football"
             style={{ width: "50px" }}
           />

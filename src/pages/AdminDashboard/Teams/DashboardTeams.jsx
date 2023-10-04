@@ -1,7 +1,5 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { getTeamsList } from "../../../lib/apis/teams-apis";
-import TeamRegisterForm from "../AdminDashboard/Teams/TeamRegisterForm";
 
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
@@ -19,9 +17,11 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import SummaryCard from "../../components/SummaryCard";
-import { randomId } from "../../utils/utils";
-import DeleteTeamBtn from "../../components/DeleteTeamBtn";
+import SummaryCard from "../../../components/SummaryCard";
+import { randomId } from "../../../utils/utils";
+import DeleteTeamBtn from "../../../components/DeleteTeamBtn";
+import { getTeamsList } from "../../../../lib/apis/teams-apis";
+import TeamRegisterForm from "./TeamRegisterForm";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

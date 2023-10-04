@@ -20,12 +20,13 @@ import { useMutation, useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { createResult } from "../../../lib/apis/results-apis";
-import { getTeamsList } from "../../../lib/apis/teams-apis";
+import { createResult } from "../../../../lib/apis/results-apis";
+import { getTeamsList } from "../../../../lib/apis/teams-apis";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
-} from "../../redux-store/snackbarSlice";
+} from "../../../redux-store/snackbarSlice";
+import { getFixtureList } from "../../../../lib/apis/fixtures-apis";
 
 const ResultCreate = () => {
   const [teams, setTeams] = useState([]);
@@ -54,6 +55,12 @@ const ResultCreate = () => {
     queryFn: () => getTeamsList(),
   });
 
+  // get select - opponent teams
+  const { data: matchId } = useQuery({
+    queryKey: ["match-detail"],
+    queryFn: () => getFixtureList(),
+  });
+
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -71,7 +78,7 @@ const ResultCreate = () => {
       </Typography>
       <Formik
         initialValues={{
-          matchNumber: "",
+          matchId: "",
           isMatchFinished: true,
           opponentOne: "",
           opponentTwo: "",
@@ -79,10 +86,7 @@ const ResultCreate = () => {
           opponentTwoGoalScore: "",
         }}
         validationSchema={Yup.object({
-          matchNumber: Yup.number("Match number must be a number.")
-            .integer("Match number must be an integer value.")
-            .min(1, "Match number must be at least and greater than 1.")
-            .required("Match number is required."),
+          matchId: Yup.string().required("Match number is required."),
           opponentOne: Yup.string().required(
             "Opponents are required and must not be same."
           ),
@@ -97,6 +101,7 @@ const ResultCreate = () => {
             .required("Goal score is required."),
         })}
         onSubmit={(values) => {
+          console.log(values);
           values.isMatchFinished = true;
           createResultMutation.mutate(values);
         }}
@@ -111,20 +116,29 @@ const ResultCreate = () => {
                 md={4}
                 lg={3}
                 xl={2}
-                sx={{ padding: 1, width: "500px" }}
+                sx={{ padding: 1 }}
               >
-                <TextField
-                  type="number"
-                  min="0"
-                  id="outlined-basic"
-                  label="Match Number"
-                  variant="outlined"
-                  sx={{ width: "100%" }}
-                  inputProps={{ min: 1 }}
-                  {...formik.getFieldProps("matchNumber")}
-                />
-                {formik.touched.matchNumber && formik.errors.matchNumber ? (
-                  <div>{formik.errors.matchNumber}</div>
+                <FormControl fullWidth>
+                  <InputLabel>Match Id/Number</InputLabel>
+                  <Select
+                    required
+                    value={teams}
+                    label="Match Id/Number"
+                    name="matchId"
+                    onChange={handleChange}
+                    {...formik.getFieldProps("matchId")}
+                  >
+                    {matchId?.data?.map((item, index) => {
+                      return (
+                        <MenuItem key={item._id} value={item._id}>
+                          <h4>{item.matchNumber}</h4>
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+                {formik.touched.matchId && formik.errors.matchId ? (
+                  <div>{formik.errors.matchId}</div>
                 ) : null}
               </Grid>
 

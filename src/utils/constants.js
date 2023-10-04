@@ -1,4 +1,4 @@
-export const matchStages = [
+export const matchStage = [
   "Group Stage",
   "Quarter Final",
   "Semi-Final",

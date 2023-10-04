@@ -16,12 +16,12 @@ import TeamsDetails from "./pages/Teams/TeamsDetails";
 import FixturePage from "./pages/fixture-page/FixturePage";
 import AdminRouteProtect from "./routeProtect/AdminRouteProtect";
 
-import DashboardFixtures from "./pages/DashBoard/DashboardFixtures";
-import DashboardPlayers from "./pages/DashBoard/DashboardPlayers";
-import DashboardPtTbl from "./pages/DashBoard/DashboardPtTbl";
-import DashboardResults from "./pages/DashBoard/DashboardResults";
-import DashboardRoot from "./pages/DashBoard/DashboardRoot";
-import DashboardTeams from "./pages/DashBoard/DashboardTeams";
+import DashboardFixtures from "./pages/AdminDashboard/Fixture/DashboardFixtures";
+import DashboardPlayers from "./pages/AdminDashboard/Players/DashboardPlayers";
+import DashboardPtTbl from "./pages/AdminDashboard/PointTable/DashboardPtTbl";
+import DashboardResults from "./pages/AdminDashboard/Result/DashboardResults";
+import DashboardRoot from "./pages/AdminDashboard/DashboardRoot";
+import DashboardTeams from "./pages/AdminDashboard/Teams/DashboardTeams";
 
 //query client
 import { QueryClient, QueryClientProvider } from "react-query";

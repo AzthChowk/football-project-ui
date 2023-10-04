@@ -57,63 +57,49 @@ const TeamsDetails = () => {
     setValue(newValue);
   };
   return (
-    <Box>
+    <Box className="container">
       <Box
         sx={{
-          padding: 1,
-          backgroundColor: "#22668D",
+          padding: "20px 10px",
 
-          backgroundImage:
-            "URL(https://d3data.sportico.com/EPLValuations/RankingsGraphBanner.png)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundBlendMode: "overlay",
-          height: { xs: "100px", sm: "150px", md: "200px", xl: "300px" },
+          // height: { xs: "100px", sm: "150px", md: "200px", xl: "200px" },
         }}
       >
         <Box
           className="container"
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            textAlign: "center",
-            alignItems: "center",
-            textTransform: "uppercase",
-            backgroundColor: "#fff",
-            opacity: "0.8",
-            width: "fit-content",
-            padding: "4px 20px",
-            borderRadius: "10px",
-            border: "1px solid #37003c",
-          }}
+          sx={{ display: { xs: "flex" }, alignItems: "center" }}
         >
           <img
             src={data?.data?.teamLogo}
             alt={data?.data.teamName}
             style={{ width: "70px" }}
           />
-          <Typography variant="h4" sx={{ fontWeight: 900 }}>
+          <Typography variant="h4" sx={{ fontWeight: 700, padding: 2 }}>
             {data?.data?.teamName}
           </Typography>
         </Box>
       </Box>
-      <Box className="container">
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
-            <Tab label="Overview" {...a11yProps(0)} />
-            <Tab label="Squad" {...a11yProps(1)} />
-            <Tab label="Stats" {...a11yProps(2)} />
+      <Box>
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: "divider",
+            backgroundColor: "lightgrey",
+
+            borderRadius: "2px",
+          }}
+        >
+          <Tabs value={value} onChange={handleChange}>
+            <Tab label="Overview" {...a11yProps(0)} sx={{ color: "#000" }} />
+            <Tab label="Squad" {...a11yProps(1)} sx={{ color: "#000" }} />
+            <Tab label="Stats" {...a11yProps(2)} sx={{ color: "#000" }} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-          <Typography
-            variant="h4"
-            sx={{ textTransform: "uppercase", fontWeight: 700 }}
-          >
+          <Typography sx={{ textTransform: "uppercase", fontWeight: 700 }}>
             {data?.data?.teamName}
           </Typography>
           <Typography>Address : {data?.data?.address}</Typography>
@@ -122,9 +108,7 @@ const TeamsDetails = () => {
           <Typography>Website : {data?.data?.url}</Typography>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <Box>
-            <TeamSquad tId={teamId} />
-          </Box>
+          <TeamSquad tId={teamId} />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
           Stats

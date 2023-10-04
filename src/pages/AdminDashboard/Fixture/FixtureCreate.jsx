@@ -18,23 +18,24 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 // react query
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createMatches } from "../../../lib/apis/fixtures-apis";
+import { createMatches } from "../../../../lib/apis/fixtures-apis";
 
-import { getTeamsList } from "../../../lib/apis/teams-apis";
+import { getTeamsList } from "../../../../lib/apis/teams-apis";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
-} from "../../redux-store/snackbarSlice";
-import { matchStages } from "../../utils/constants";
+} from "../../../redux-store/snackbarSlice";
+import { matchStage } from "../../../utils/constants";
 
 const FixtureCreate = () => {
   const [teams, setTeams] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [time, setTime] = React.useState(dayjs("2022-04-17T15:30"));
+  const queryClient = useQueryClient();
 
   //create matches
   const createMatchesMutation = useMutation({
@@ -42,6 +43,7 @@ const FixtureCreate = () => {
     mutationFn: (values) => createMatches(values),
     onSuccess: (response) => {
       dispatch(openSuccessSnackbar(response?.data?.message));
+      queryClient.invalidateQueries("fixtures-list");
     },
     onError: (error) => {
       dispatch(openErrorSnackbar(error?.response?.data?.message));
@@ -76,6 +78,7 @@ const FixtureCreate = () => {
       <Formik
         initialValues={{
           matchNumber: "",
+          matchStage: "",
           time: "",
           date: "",
           playGround: "",
@@ -142,13 +145,13 @@ const FixtureCreate = () => {
                   <InputLabel>Match Stage</InputLabel>
                   <Select
                     required
-                    value={matchStages}
+                    value={matchStage}
                     label="Match Stage"
                     name="matchStage"
                     onChange={handleChange}
                     {...formik.getFieldProps("matchStage")}
                   >
-                    {matchStages?.map((item, index) => {
+                    {matchStage?.map((item, index) => {
                       return (
                         <MenuItem key={index} value={item}>
                           <Typography>{item}</Typography>

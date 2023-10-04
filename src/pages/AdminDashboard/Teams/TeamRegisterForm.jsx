@@ -11,15 +11,15 @@ import TextField from "@mui/material/TextField";
 import { Stack } from "@mui/system";
 import { Formik } from "formik";
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { addTeam } from "../../../lib/apis/teams-apis";
+import { addTeam } from "../../../../lib/apis/teams-apis";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
-} from "../../redux-store/snackbarSlice";
+} from "../../../redux-store/snackbarSlice";
 import "./team-register-form.css";
 import axios from "axios";
 
@@ -45,6 +45,7 @@ export default function CustomizedDialogs() {
 
   const [localUrl, setLocalUrl] = useState(null);
   const [teamImage, setTeamImage] = useState(null);
+  const queryClient = useQueryClient();
 
   const addTeamMutation = useMutation({
     mutationKey: ["add-team"],
@@ -52,6 +53,7 @@ export default function CustomizedDialogs() {
     onSuccess: (response) => {
       dispatch(openSuccessSnackbar(response?.data?.message));
       handleClose();
+      queryClient.invalidateQueries("teams-list");
     },
     onError: (error) => {
       dispatch(openErrorSnackbar(error?.data?.message));

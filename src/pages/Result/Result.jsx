@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 
 //uuid
 import { v4 as uuidv4 } from "uuid";
-import ResultCard from "../../components/Result/ResultCard";
+import ResultListTable from "../../components/Result/ResultListTable";
 
 const Result = () => {
   const [result, setResult] = useState([]);
@@ -25,14 +25,15 @@ const Result = () => {
       <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
         Results
       </Typography>
+      <ResultListTable />
 
-      {data?.data?.map((item, index) => {
+      {/* {data?.data?.map((item, index) => {
         return (
           <Box key={index}>
             <ResultCard {...item} />
           </Box>
         );
-      })}
+      })} */}
     </Box>
   );
 };
