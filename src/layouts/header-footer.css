@@ -74,7 +74,7 @@
     top: 0;
     left: 0;
     margin-top: 60px;
-    background-color: #37003c;
+    background-color: #aaffcd;
   }
 
   .menu-item-res ul {
@@ -84,7 +84,7 @@
     text-align: center;
   }
   .menu-item-res ul li:hover {
-    background-color: black;
+    background-color: #008849;
   }
   .top-header-cts {
     display: none;
