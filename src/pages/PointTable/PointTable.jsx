@@ -12,12 +12,14 @@ import {
 import React from "react";
 import { useQuery } from "react-query";
 import { getPointTable } from "../../../lib/apis/pointtable-apis";
+import { Link } from "react-router-dom";
 
 const PointTable = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["point-table"],
     queryFn: () => getPointTable(),
   });
+  console.log(data);
 
   return (
     <>
@@ -94,7 +96,6 @@ const PointTable = () => {
                         <TableCell align="center">{index + 1}</TableCell>
 
                         <TableCell
-                          align="center"
                           sx={{
                             display: "flex",
                             justifyContent: "flex-start",
@@ -110,9 +111,11 @@ const PointTable = () => {
                               objectFit: "contain",
                             }}
                           />
-                          <Typography sx={{ fontWeight: 700 }}>
-                            {item.teamName}
-                          </Typography>
+                          <Link to={`/teams/${item.teamId}`}>
+                            <Typography sx={{ fontWeight: 700 }}>
+                              {item.teamName}
+                            </Typography>
+                          </Link>
                         </TableCell>
                         <TableCell align="center" sx={{ padding: "2px" }}>
                           {item.played}
