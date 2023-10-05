@@ -12,7 +12,7 @@ const Footer = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <Box sx={{ width: "100%", backgroundColor: "#09203e", color: "#fff" }}>
+    <Box sx={{ width: "100%", backgroundColor: "#008849", color: "#fff" }}>
       <Grid
         container
         className="container"

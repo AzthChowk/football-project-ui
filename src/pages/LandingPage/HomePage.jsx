@@ -73,7 +73,7 @@ const HomePage = () => {
         {/* ============ right section matches============== */}
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4} sx={{ p: 2 }}>
           <Grid
-            sx={{ border: "1px solid #37003C", borderRadius: "10px", mb: 4 }}
+            sx={{ border: "1px solid #008849", borderRadius: "10px", mb: 4 }}
           >
             <Typography
               variant="h6"
@@ -84,7 +84,7 @@ const HomePage = () => {
                 textAlign: "center",
                 textTransform: "uppercase",
                 borderRadius: "10px",
-                backgroundColor: "#37003c",
+                backgroundColor: "#008849",
                 m: 1,
               }}
             >
@@ -113,7 +113,7 @@ const HomePage = () => {
                 p: 2,
                 textAlign: "center",
                 textTransform: "uppercase",
-                backgroundColor: "#37003C",
+                backgroundColor: "#008849",
                 borderRadius: "10px",
               }}
             >

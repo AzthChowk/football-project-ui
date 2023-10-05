@@ -60,7 +60,7 @@ const TeamsDetails = () => {
     <Box className="container">
       <Box
         sx={{
-          padding: "20px 10px",
+          padding: "20px",
 
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -77,7 +77,7 @@ const TeamsDetails = () => {
             alt={data?.data.teamName}
             style={{ width: "70px" }}
           />
-          <Typography variant="h4" sx={{ fontWeight: 700, padding: 2 }}>
+          <Typography variant="h4" sx={{ fontWeight: 900, padding: 2 }}>
             {data?.data?.teamName}
           </Typography>
         </Box>
@@ -85,17 +85,15 @@ const TeamsDetails = () => {
       <Box>
         <Box
           sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-            backgroundColor: "lightgrey",
-
-            borderRadius: "2px",
+            backgroundColor: "#D0E7D2",
+            padding: "5px 20px",
+            borderRadius: "50px",
           }}
         >
           <Tabs value={value} onChange={handleChange}>
-            <Tab label="Overview" {...a11yProps(0)} sx={{ color: "#000" }} />
-            <Tab label="Squad" {...a11yProps(1)} sx={{ color: "#000" }} />
-            <Tab label="Stats" {...a11yProps(2)} sx={{ color: "#000" }} />
+            <Tab label="Overview" {...a11yProps(0)} sx={{ color: "#008849" }} />
+            <Tab label="Squad" {...a11yProps(1)} sx={{ color: "#008849" }} />
+            <Tab label="Stats" {...a11yProps(2)} sx={{ color: "#008849" }} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>

@@ -39,13 +39,12 @@ const UpcomingMatchesCard = ({
           padding: 1,
         }}
       >
-        {opponentOneName}
         <img
           src={opponentOneLogo}
           alt=""
           style={{ width: "25px", verticalAlign: "middle", margin: "10px" }}
         />
-        Vs
+        {opponentOneName} Vs
         <img
           src={opponentTwoLogo}
           alt=""
@@ -54,7 +53,7 @@ const UpcomingMatchesCard = ({
         {opponentTwoName}
       </Typography>
       <Typography sx={{ fontWeight: 700 }}>
-        {date.split("T")[0]} | GMT - {time},{" "}
+        {date.split("T")[0]} | GMT - {time}
       </Typography>
       <Typography sx={{ fontSize: "10pt" }}>{playGround}</Typography>
       <Divider variant="middle" sx={{ width: "25%", margin: "auto" }} />
