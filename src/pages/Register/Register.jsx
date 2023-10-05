@@ -70,7 +70,9 @@ const Register = () => {
           <img
             src="/404robot.svg"
             alt=""
-            style={{ width: "55%" }}
+            style={{
+              width: "40%",
+            }}
             className="center"
           />
         </Grid>
@@ -273,19 +275,6 @@ const Register = () => {
                     {formik.touched.role && formik.errors.role ? (
                       <div>{formik.errors.role}</div>
                     ) : null}
-
-                    {/* <TextField
-                      required
-                      type="text"
-                      name="role"
-                      label="Role (Administrator / Reporter)"
-                      variant="outlined"
-                      sx={{ width: "100%" }}
-                      {...formik.getFieldProps("role")}
-                    />
-                    {formik.touched.role && formik.errors.role ? (
-                      <div>{formik.errors.role}</div>
-                    ) : null} */}
                   </Grid>
                 </Grid>
 

@@ -141,6 +141,7 @@ export default function PlayerAddForm() {
             middleName: "",
             lastName: "",
             position: "",
+            jerseyNumber: "",
             dob: "",
             nationality: "",
             currentClub: "",
@@ -154,6 +155,7 @@ export default function PlayerAddForm() {
               .max(20, "Must be 20 characters or less")
               .required("Player's last name is required."),
             position: Yup.string().required("Player position is required."),
+            jerseyNumber: Yup.number().required("Jersey number is required."),
             dob: Yup.date().required("Player's date of birth is required."),
             nationality: Yup.string().required(
               "Player's nationality is required."
@@ -236,45 +238,6 @@ export default function PlayerAddForm() {
 
               <Box className="add-player-form-field">
                 <Box sx={{ width: "50%" }}>
-                  <FormControl fullWidth>
-                    <InputLabel>Position</InputLabel>
-                    <Select
-                      required
-                      label="Position"
-                      name="position"
-                      onChange={handleChange}
-                      {...formik.getFieldProps("position")}
-                    >
-                      {position.map((item, index) => {
-                        return (
-                          <MenuItem key={index} value={item}>
-                            <Typography>{item}</Typography>
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                  {formik.touched.position && formik.errors.position ? (
-                    <div>{formik.errors.position}</div>
-                  ) : null}
-                </Box>
-                <Box sx={{ width: "50%" }}>
-                  <TextField
-                    required
-                    sx={{ width: "100%" }}
-                    type="date"
-                    variant="outlined"
-                    name="dob"
-                    {...formik.getFieldProps("dob")}
-                  />
-                  {formik.touched.dob && formik.errors.dob ? (
-                    <div>{formik.errors.dob}</div>
-                  ) : null}
-                </Box>
-              </Box>
-
-              <Box className="add-player-form-field">
-                <Box sx={{ width: "50%" }}>
                   <Autocomplete
                     required
                     id="country-select-demo"
@@ -294,7 +257,7 @@ export default function PlayerAddForm() {
                           srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
                           alt=""
                         />
-                        {option.label} ({option.code}) +{option.phone}
+                        {option.label}
                       </Box>
                     )}
                     renderInput={(params) => (
@@ -306,7 +269,7 @@ export default function PlayerAddForm() {
                         variant="outlined"
                         inputProps={{
                           ...params.inputProps,
-                          autoComplete: "nationality", // disable autocomplete and autofill
+                          autoComplete: "new-password", // disable autocomplete and autofill
                         }}
                         {...formik.getFieldProps("nationality")}
                       />
@@ -316,6 +279,22 @@ export default function PlayerAddForm() {
                     <div>{formik.errors.nationality}</div>
                   ) : null}
                 </Box>
+                <Box sx={{ width: "50%" }}>
+                  <TextField
+                    required
+                    sx={{ width: "100%" }}
+                    type="date"
+                    variant="outlined"
+                    name="dob"
+                    {...formik.getFieldProps("dob")}
+                  />
+                  {formik.touched.dob && formik.errors.dob ? (
+                    <div>{formik.errors.dob}</div>
+                  ) : null}
+                </Box>
+              </Box>
+
+              <Box className="add-player-form-field">
                 <Box sx={{ width: "50%" }}>
                   <FormControl fullWidth>
                     <InputLabel>Team</InputLabel>
@@ -340,8 +319,46 @@ export default function PlayerAddForm() {
                     <div>{formik.errors.currentClub}</div>
                   ) : null}
                 </Box>
+                <Box sx={{ width: "50%" }}>
+                  <FormControl fullWidth>
+                    <InputLabel>Position</InputLabel>
+                    <Select
+                      required
+                      label="Position"
+                      name="position"
+                      onChange={handleChange}
+                      {...formik.getFieldProps("position")}
+                    >
+                      {position.map((item, index) => {
+                        return (
+                          <MenuItem key={index} value={item}>
+                            <Typography>{item}</Typography>
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                  {formik.touched.position && formik.errors.position ? (
+                    <div>{formik.errors.position}</div>
+                  ) : null}
+                </Box>
               </Box>
+
               <Box className="add-player-form-field">
+                <Box sx={{ width: "100%" }}>
+                  <TextField
+                    required
+                    type="text"
+                    label="Jersey Number"
+                    variant="outlined"
+                    name="jerseyNumber"
+                    sx={{ width: "100%" }}
+                    {...formik.getFieldProps("jerseyNumber")}
+                  />
+                  {formik.touched.jerseyNumber && formik.errors.jerseyNumber ? (
+                    <div>{formik.errors.jerseyNumber}</div>
+                  ) : null}
+                </Box>
                 <Box sx={{ width: "100%" }}>
                   {localUrl && (
                     <img
