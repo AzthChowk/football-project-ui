@@ -68,6 +68,14 @@
     display: block;
     transition: 5s ease-in;
   }
+  .navbar-menu a {
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    font-weight: 300;
+    align-items: center;
+    text-transform: uppercase;
+  }
   .menu-item-res {
     position: absolute;
     width: 100%;
