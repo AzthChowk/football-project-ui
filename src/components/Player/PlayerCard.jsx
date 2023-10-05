@@ -7,7 +7,7 @@ const PlayerCard = (props) => {
       <Grid
         sx={{
           margin: 1,
-          border: "1px solid #F1EFEF",
+
           borderRadius: "15px",
           border: "1px solid #D0E7D2",
         }}
