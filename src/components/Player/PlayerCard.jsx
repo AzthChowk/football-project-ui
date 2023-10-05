@@ -7,7 +7,6 @@ const PlayerCard = (props) => {
       <Grid
         sx={{
           margin: 1,
-
           borderRadius: "15px",
           border: "1px solid #D0E7D2",
         }}
@@ -17,6 +16,7 @@ const PlayerCard = (props) => {
             height: "250px",
             backgroundColor: "#D0E7D2",
             borderRadius: "10px 10px 0 0",
+            borderBottom: "4px solid #000",
           }}
         >
           <img
