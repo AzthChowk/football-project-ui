@@ -6,7 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./register-form.css";
 
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { addAdmin } from "../../../lib/apis/admin-apis";
@@ -35,6 +44,9 @@ const Register = () => {
       );
     },
   });
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   return (
     <Box className="register-page" sx={{ padding: 1 }}>
       <CustomSnackbar />
@@ -217,21 +229,52 @@ const Register = () => {
                 </Grid>
                 <Grid sx={{ display: "flex", width: "100%" }}>
                   <Grid sx={{ padding: 1, width: "100%" }}>
-                    <TextField
-                      required
-                      type="text"
-                      name="gender"
-                      label="Gender"
-                      variant="outlined"
-                      sx={{ width: "100%" }}
-                      {...formik.getFieldProps("gender")}
-                    />
+                    <FormControl fullWidth>
+                      <InputLabel>Gender</InputLabel>
+                      <Select
+                        required
+                        label="Gender"
+                        name="gender"
+                        onChange={handleChange}
+                        {...formik.getFieldProps("gender")}
+                      >
+                        {["male", "female"].map((item, index) => {
+                          return (
+                            <MenuItem key={index} value={item}>
+                              <Typography>{item}</Typography>
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
                     {formik.touched.gender && formik.errors.gender ? (
                       <div>{formik.errors.gender}</div>
                     ) : null}
                   </Grid>
                   <Grid sx={{ padding: 1, width: "100%" }}>
-                    <TextField
+                    <FormControl fullWidth>
+                      <InputLabel>Role</InputLabel>
+                      <Select
+                        required
+                        label="Role"
+                        name="role"
+                        onChange={handleChange}
+                        {...formik.getFieldProps("role")}
+                      >
+                        {["Administrator", "Reporter"].map((item, index) => {
+                          return (
+                            <MenuItem key={index} value={item}>
+                              <Typography>{item}</Typography>
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                    {formik.touched.role && formik.errors.role ? (
+                      <div>{formik.errors.role}</div>
+                    ) : null}
+
+                    {/* <TextField
                       required
                       type="text"
                       name="role"
@@ -242,7 +285,7 @@ const Register = () => {
                     />
                     {formik.touched.role && formik.errors.role ? (
                       <div>{formik.errors.role}</div>
-                    ) : null}
+                    ) : null} */}
                   </Grid>
                 </Grid>
 
