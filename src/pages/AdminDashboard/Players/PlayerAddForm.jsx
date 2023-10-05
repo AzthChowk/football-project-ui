@@ -20,14 +20,14 @@ import * as Yup from "yup";
 import { countries } from "../../../components/Countries.js";
 
 import { Stack, Typography } from "@mui/material";
-import { useEffect } from "react";
 
 // react -query
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addPlayer } from "../../../../lib/apis/players-apis.js";
+import { getTeamsList } from "../../../../lib/apis/teams-apis.js";
 import {
   openErrorSnackbar,
   openSuccessSnackbar,
@@ -53,12 +53,6 @@ const position = [
 
 export default function PlayerAddForm() {
   const [open, setOpen] = React.useState(false);
-  const [success, setSuccess] = useState(false);
-  const [failed, setFailed] = useState(false);
-  // const [loading, setLoading] = useState(false);
-  const [age, setAge] = React.useState("");
-  const [teams, setTeams] = useState([]);
-  const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [localUrl, setLocalUrl] = useState(null);
@@ -80,19 +74,10 @@ export default function PlayerAddForm() {
       dispatch(openErrorSnackbar(res?.data?.message));
     },
   });
-
-  useEffect(() => {
-    const fetchTeams = async () => {
-      try {
-        const teamList = await axios.post("http://localhost:9090/teams");
-
-        setTeams(teamList.data);
-      } catch (error) {
-        setError(true);
-      }
-    };
-    fetchTeams();
-  }, []);
+  const { data: teams } = useQuery({
+    queryKey: ["teams-list"],
+    queryFn: () => getTeamsList(),
+  });
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -306,7 +291,7 @@ export default function PlayerAddForm() {
                       onChange={handleChange}
                       {...formik.getFieldProps("currentClub")}
                     >
-                      {teams.map((item) => {
+                      {teams?.data?.map((item) => {
                         return (
                           <MenuItem key={item._id} value={item._id}>
                             <h4>{item.teamName}</h4>
