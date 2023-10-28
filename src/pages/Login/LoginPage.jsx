@@ -32,7 +32,7 @@ const LoginPage = () => {
       dispatch(openSuccessSnackbar(response?.data?.message));
       if (response?.data?.findUser?.role === "Administrator")
         navigate("/admin");
-      if (response?.data?.findUser?.role === "Reporter") navigate("/reporter");
+      if (response?.data?.findUser?.role === "Reporter") navigate(`/reporter`);
     },
     onError: (error) => {
       dispatch(openErrorSnackbar(error?.response?.data?.message));

@@ -333,7 +333,7 @@ export default function PlayerAddForm() {
                 <Box sx={{ width: "100%" }}>
                   <TextField
                     required
-                    type="text"
+                    type="number"
                     label="Jersey Number"
                     variant="outlined"
                     name="jerseyNumber"

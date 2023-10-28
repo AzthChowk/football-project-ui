@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import React from "react";
 import { useQuery } from "react-query";
 import { getPointTable } from "../../../lib/apis/pointtable-apis";
+import { Link } from "react-router-dom";
 
 const SummaryPointTable = () => {
   const { data, isLoading } = useQuery({
@@ -42,7 +43,9 @@ const SummaryPointTable = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell>{index + 1}</TableCell>
-                <TableCell sx={{ fontWeight: 700 }}>{item.teamName}</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>
+                  <Link to={`/teams/${item.teamId}`}>{item.teamName}</Link>
+                </TableCell>
                 <TableCell align="center">{item.played}</TableCell>
 
                 <TableCell align="center">{item.goalDifference}</TableCell>

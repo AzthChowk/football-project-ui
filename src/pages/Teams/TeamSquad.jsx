@@ -9,6 +9,7 @@ const TeamSquad = (props) => {
     queryKey: ["teams-squad-list"],
     queryFn: () => getTeamSquad(props.tId),
   });
+  console.log(data);
   return (
     <Grid container>
       {data?.data?.map((item, index) => {

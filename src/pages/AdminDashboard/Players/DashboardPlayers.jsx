@@ -122,14 +122,16 @@ const Players = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">SN</TableCell>
-                <TableCell>Image</TableCell>
-                <TableCell>Player's Name</TableCell>
-                <TableCell>Position</TableCell>
-                <TableCell>Nationality</TableCell>
-                <TableCell>Age</TableCell>
-                <TableCell>Current club</TableCell>
-                <TableCell>Action</TableCell>
+                <TableCell align="center" sx={{ fontWeight: 700 }}>
+                  SN
+                </TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Image</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Player's Name</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Position</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Nationality</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Age</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Current club</TableCell>
+                <TableCell sx={{ fontWeight: 700 }}>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -177,7 +179,7 @@ const Players = () => {
                           <TableCell sx={{ padding: "2px" }}>
                             {item.clubName}
                           </TableCell>
-                          <TableCell>
+                          <TableCell sx={{ display: "flex", gap: "10px" }}>
                             <PlayerEditForm playerId={item._id} />
                             <DeletePlayerBtn playerId={item._id} />
                           </TableCell>

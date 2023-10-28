@@ -35,7 +35,9 @@ const NewsRoot = () => {
           <Typography sx={{ wordBreak: "break-all", padding: 1 }}>
             {userEmail}
           </Typography>
-          <Typography sx={{ padding: 1 }}> Profile </Typography>
+          <Link to="profile">
+            <Typography sx={{ padding: 1 }}> Profile </Typography>
+          </Link>
           <Divider />
           <Link to="news">
             <Typography sx={{ padding: 1 }}> News </Typography>

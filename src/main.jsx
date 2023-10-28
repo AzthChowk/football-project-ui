@@ -38,6 +38,8 @@ import PointTable from "./pages/PointTable/PointTable";
 import store from "./redux-store/store";
 import ReporterRouteProtect from "./routeProtect/ReporterRouteProtect";
 import EditNews from "./pages/News/EditNews";
+import Users from "./pages/AdminDashboard/Users/Users";
+import Profile from "./pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +94,10 @@ const router = createBrowserRouter([
         ),
         children: [
           {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
             path: "news",
             element: <ReporterNews />,
           },
@@ -142,6 +148,10 @@ const router = createBrowserRouter([
       {
         path: "pointtable",
         element: <DashboardPtTbl />,
+      },
+      {
+        path: "users",
+        element: <Users />,
       },
     ],
   },
