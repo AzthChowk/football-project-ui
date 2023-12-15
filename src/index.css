@@ -6,25 +6,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Nunito sans", sans-serif !important;
+}
+:root {
+  --primaryColorDark: #171717;
+  --primaryColorGrey: #444444;
+  --secondaryColorOne: #da0037;
+  --secondaryColorTwo: #ededed;
+  --white: "#ffffff";
 }
 
 body {
 }
 button {
-  border-radius: 5px;
-  border: 1px solid #8f0000;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: transparent;
+  padding: 8px 20px;
+  border-radius: 2px;
+  border: none;
+  background-color: var(--primaryColorGrey);
+  color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
-  margin: 10px;
+  font-weight: 600;
 }
 button:hover {
-  border-color: rgb(0, 94, 0);
+  background-color: var(--primaryColorDark);
 }
 .container {
   max-width: 1536px;

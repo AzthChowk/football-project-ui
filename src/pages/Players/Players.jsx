@@ -39,6 +39,15 @@ const Players = () => {
       border: 0,
     },
   }));
+  const dateToday = new Date();
+  const getThisYear = dateToday.getFullYear();
+
+  const calculateAge = (dob) => {
+    console.log(dob);
+    const divideDob = dob.split("T")[0];
+    const getDobYear = divideDob.split("-")[0];
+    return getDobYear;
+  };
 
   return (
     <Box className="container players-display-page">
@@ -94,8 +103,7 @@ const Players = () => {
                     {item.nationality}
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                    {/* {(today - new Date(item.dob)) / 365.25} */}
-                    {item.dob.split("T")[0]}
+                    {getThisYear - calculateAge(item.dob)}
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {item.clubName}

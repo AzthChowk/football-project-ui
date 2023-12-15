@@ -15,11 +15,7 @@ const Header = () => {
     <nav className="navbar">
       <Box className="container navbar-menu">
         <Box className="logo">
-          <img
-            src="https://lirp.cdn-website.com/ebe46285/dms3rep/multi/opt/69a1870e9f40e12f71bf3f3e5fea7214-640w.png"
-            alt="Football"
-            style={{ width: "50px" }}
-          />
+          <img src="/logo.svg" alt="Football" style={{ width: "125px" }} />
         </Box>
 
         <Box className={menuOpen ? "menu-item-res" : "menu-item"}>

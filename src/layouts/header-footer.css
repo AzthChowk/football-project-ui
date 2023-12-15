@@ -1,8 +1,7 @@
 .navbar {
-  background-color: #000000;
-  /* background: linear-gradient(-135deg, #37003c, #001261); */
+  background-color: var(--primaryColorGrey);
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-  color: #fff;
+  color: var(--white);
   z-index: 1000;
   width: 100%;
   position: fixed;
@@ -42,10 +41,10 @@
   text-decoration: none;
   font-weight: 300;
   align-items: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .navbar-menu a:hover {
-  color: #ffd000;
+  color: var(--white);
 }
 .active {
   color: rgb(255, 0, 0);
@@ -82,7 +81,7 @@
     top: 0;
     left: 0;
     margin-top: 60px;
-    background-color: #aaffcd;
+    background-color: var(--primaryColorGrey);
   }
 
   .menu-item-res ul {
@@ -92,7 +91,7 @@
     text-align: center;
   }
   .menu-item-res ul li:hover {
-    background-color: #008849;
+    background-color: var(--secondaryColorTwo);
   }
   .top-header-cts {
     display: none;

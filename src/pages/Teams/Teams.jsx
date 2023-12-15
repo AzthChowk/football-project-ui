@@ -5,7 +5,7 @@ import { getTeamsList } from "../../../lib/apis/teams-apis";
 import "../../styles/teams.css";
 
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Teams = () => {
   const navigate = useNavigate();
@@ -26,39 +26,46 @@ const Teams = () => {
             <Grid
               item
               key={item._id}
-              xs={12}
-              sm={6}
-              md={4}
+              xs={6}
+              sm={4}
+              md={3}
               lg={3}
-              xl={3}
+              xl={2}
               sx={{
-                borderRadius: "5px",
-                padding: 2,
-                boxShadow:
-                  "rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px",
+                padding: 1,
+
                 // borderBottom: "4px solid #008849",
               }}
             >
-              <img
-                src={item.teamLogo}
-                alt={item.teamName}
-                style={{
-                  width: "100px",
-                  height: "100px",
+              <Box
+                sx={{
+                  textAlign: "center",
+                  padding: 2,
+                  border: "1px solid #DDDDDD",
+                  borderRadius: "2px",
                 }}
-              />
-              <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography sx={{ fontWeight: 700, padding: 1 }}>
-                  {item.teamName}
-                </Typography>
+              >
+                <Link to={`/teams/${item._id}`}>
+                  <img
+                    src={item.teamLogo}
+                    alt={item.teamName}
+                    style={{
+                      width: "75px",
+                      height: "75px",
+                    }}
+                  />
+                  <Typography sx={{ fontWeight: 600 }}>
+                    {item.teamName}
+                  </Typography>
+                </Link>
 
-                <Button
+                <button
                   variant="outlined"
                   onClick={() => navigate(`/teams/${item._id}`)}
                 >
-                  <ArrowRightAltIcon />
-                </Button>
-              </Grid>
+                  Read more
+                </button>
+              </Box>
             </Grid>
           );
         })}

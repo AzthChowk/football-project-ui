@@ -87,6 +87,15 @@ const Players = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  const dateToday = new Date();
+  const getThisYear = dateToday.getFullYear();
+
+  const calculateAge = (dob) => {
+    console.log(dob);
+    const divideDob = dob.split("T")[0];
+    const getDobYear = divideDob.split("-")[0];
+    return getDobYear;
+  };
 
   return (
     <>
@@ -165,7 +174,9 @@ const Players = () => {
                             />
                           </TableCell>
                           <TableCell sx={{ padding: "2px" }}>
-                            {item.fullName}
+                            <Typography sx={{ textTransform: "capitalize" }}>
+                              {item.fullName}
+                            </Typography>
                           </TableCell>
                           <TableCell sx={{ padding: "2px" }}>
                             {item.position}
@@ -174,7 +185,7 @@ const Players = () => {
                             {item.nationality}
                           </TableCell>
                           <TableCell sx={{ padding: "2px" }}>
-                            {item.dob.split("T")[0]}
+                            {getThisYear - calculateAge(item.dob)}
                           </TableCell>
                           <TableCell sx={{ padding: "2px" }}>
                             {item.clubName}
