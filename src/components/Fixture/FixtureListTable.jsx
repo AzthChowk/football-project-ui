@@ -25,7 +25,7 @@ const FixtureListTable = () => {
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 900 }} align="center">
-                Match number
+                M.No.
               </TableCell>
               <TableCell sx={{ fontWeight: 900 }}>Matches</TableCell>
               <TableCell sx={{ fontWeight: 900 }} align="center">

@@ -9,7 +9,6 @@
 .players-display-page-header h1 {
   font-weight: 300;
   font-size: 40px;
-  text-transform: uppercase;
 }
 .players-display-page-header input[type="search"] {
   padding: 7px;
@@ -31,7 +30,7 @@
 /* =====================Table================ */
 .players-display-table {
   margin: 20px 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .players-display-table table td {
   padding: 5px;

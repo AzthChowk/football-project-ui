@@ -15,7 +15,7 @@ const Header = () => {
     <nav className="navbar">
       <Box className="container navbar-menu">
         <Box className="logo">
-          <img src="/logo.svg" alt="Football" style={{ width: "125px" }} />
+          <img src="/logo.svg" alt="Football" style={{ width: "100px" }} />
         </Box>
 
         <Box className={menuOpen ? "menu-item-res" : "menu-item"}>
@@ -131,4 +131,5 @@ export default Header;
 
 const hamburgerMenuStyle = {
   cursor: "pointer",
+  color: "#fff",
 };

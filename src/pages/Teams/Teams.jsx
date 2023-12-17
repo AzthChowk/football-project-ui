@@ -16,7 +16,13 @@ const Teams = () => {
 
   return (
     <Box className="container">
-      <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: 900,
+          padding: "20px 10px",
+        }}
+      >
         Teams
       </Typography>
 
@@ -41,8 +47,6 @@ const Teams = () => {
                 sx={{
                   textAlign: "center",
                   padding: 2,
-                  border: "1px solid #DDDDDD",
-                  borderRadius: "2px",
                 }}
               >
                 <Link to={`/teams/${item._id}`}>
@@ -54,17 +58,15 @@ const Teams = () => {
                       height: "75px",
                     }}
                   />
-                  <Typography sx={{ fontWeight: 600 }}>
-                    {item.teamName}
-                  </Typography>
+                  <Typography>{item.teamName}</Typography>
                 </Link>
 
-                <button
+                {/* <button
                   variant="outlined"
                   onClick={() => navigate(`/teams/${item._id}`)}
                 >
                   Read more
-                </button>
+                </button> */}
               </Box>
             </Grid>
           );

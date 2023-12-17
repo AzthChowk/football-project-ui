@@ -6,6 +6,9 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 import * as Yup from "yup";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 import "./text-area-full-news.css";
 import axios from "axios";
 import {
@@ -26,6 +29,7 @@ const NewsAddForm = () => {
   const [newsImg, setNewImg] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [value, setValue] = useState("");
 
   const addNewsMutation = useMutation({
     mutationKey: ["add-news"],
@@ -205,17 +209,23 @@ const NewsAddForm = () => {
               xl={12}
               sx={{ margin: "10px 0" }}
             >
-              <TextareaAutosize
+              {/* <TextareaAutosize
                 minRows={10}
                 className="text-area-full-news"
                 placeholder="Full news..."
                 name="fullNews"
                 {...formik.getFieldProps("fullNews")}
+              /> */}
+              <ReactQuill
+                theme="snow"
+                value={value}
+                onChange={setValue}
+                name="fullNews"
               />
 
-              {formik.touched.fullNews && formik.errors.fullNews ? (
+              {/* {formik.touched.fullNews && formik.errors.fullNews ? (
                 <div>{formik.errors.fullNews}</div>
-              ) : null}
+              ) : null} */}
             </Grid>
             <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
               <Grid sx={{ display: "flex", justifyContent: "flex-start" }}>

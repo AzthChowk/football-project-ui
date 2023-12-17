@@ -25,7 +25,7 @@ const FeaturedNewsCard = ({ _id, newsTitle, newsImgUrl, newsHighlights }) => {
           <Typography sx={{ fontWeight: 700, textTransform: "uppercase" }}>
             Featured News
           </Typography>
-          <Typography sx={{ margin: "10px 0", fontWeight: 900 }}>
+          <Typography sx={{ margin: "10px 0", fontWeight: 700 }}>
             {newsTitle.slice(0, 60)}..
           </Typography>
           <Typography>{newsHighlights.slice(0, 200)}</Typography>

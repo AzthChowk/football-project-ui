@@ -8,6 +8,8 @@ const FixturePage = () => {
       <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
         Fixture
       </Typography>
+
+      {/* <FixtureList /> */}
       <FixtureListTable />
     </Box>
   );

@@ -22,7 +22,7 @@ const Players = () => {
   // ========table from mui ============
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#1450A3",
+      backgroundColor: "#000",
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -57,20 +57,18 @@ const Players = () => {
           marginTop: { xs: 0, sm: 0, md: 5, lg: 5 },
         }}
       >
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6}>
           <Typography variant="h4" sx={{ fontWeight: 900, padding: "10px" }}>
             Players
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} sm={6} sx={{ display: "flex", padding: "0 10px " }}>
           <TextField
             type="search"
             name="search"
-            sx={{ width: "300px", padding: "0 10px" }}
+            sx={{ width: "100%", padding: "0 10px 0 0" }}
           />
-          <Button variant="contained" sx={{ padding: 2 }}>
-            Search
-          </Button>
+          <button>Search</button>
         </Grid>
       </Grid>
       {/* ================| PLAYERS TABLE |===================== */}
@@ -79,7 +77,7 @@ const Players = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Image</StyledTableCell>
+                <StyledTableCell align="center">Image</StyledTableCell>
                 <StyledTableCell align="left">Name</StyledTableCell>
                 <StyledTableCell align="left">Position</StyledTableCell>
                 <StyledTableCell align="left">Nationality</StyledTableCell>
@@ -90,7 +88,7 @@ const Players = () => {
             <TableBody>
               {data?.data?.map((item) => (
                 <StyledTableRow key={item._id}>
-                  <StyledTableCell>
+                  <StyledTableCell align="center">
                     <img src={item.playerImageUrl} alt="" />
                   </StyledTableCell>
                   <StyledTableCell>
