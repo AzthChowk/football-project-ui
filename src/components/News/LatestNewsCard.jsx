@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LatestNewsCard = ({ _id, newsImgUrl, newsTitle, newsHighlights }) => {
   return (
-    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} sx={{ padding: 1 }}>
+    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} sx={{ padding: "5px" }}>
       <Link to={`news/${_id}`}>
         <img
           src={newsImgUrl}
@@ -13,7 +13,7 @@ const LatestNewsCard = ({ _id, newsImgUrl, newsTitle, newsHighlights }) => {
             width: "100%",
             height: "200px",
             objectFit: "cover",
-            borderRadius: "5px",
+            borderRadius: "2px",
           }}
         />
       </Link>
@@ -23,7 +23,9 @@ const LatestNewsCard = ({ _id, newsImgUrl, newsTitle, newsHighlights }) => {
         </Typography>
       </Link>
 
-      <Typography>{newsHighlights.slice(0, 100)}..</Typography>
+      <Typography sx={{ fontSize: "11pt" }}>
+        {newsHighlights.slice(0, 100)}..
+      </Typography>
     </Grid>
   );
 };

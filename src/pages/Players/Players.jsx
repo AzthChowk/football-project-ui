@@ -11,6 +11,7 @@ import { getPlayersList } from "../../../lib/apis/players-apis";
 import "./players-display-page.css";
 import { useQuery } from "react-query";
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import PageHeader from "../../components/PageHeader";
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -58,9 +59,7 @@ const Players = () => {
         }}
       >
         <Grid item xs={12} sm={6}>
-          <Typography variant="h4" sx={{ fontWeight: 900, padding: "10px" }}>
-            Players
-          </Typography>
+          <PageHeader title="Players" />
         </Grid>
         <Grid item xs={12} sm={6} sx={{ display: "flex", padding: "0 10px " }}>
           <TextField

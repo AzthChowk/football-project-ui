@@ -21,42 +21,92 @@ const UpcomingMatchesCard = ({
         textAlign: "center",
         width: "100%",
         "&:hover": {
-          background:
-            "linear-gradient(98.5deg,#05f0ff -46.16%,#7367ff 42.64%,#963cff 70.3%)",
-          cursor: "pointer",
-          color: "#fff",
+          backgroundColor: "#DDE6ED",
         },
-        borderRadius: "10px",
+
         padding: 1,
       }}
     >
-      <Typography
-        variant="h6"
-        sx={{
-          fontWeight: 500,
-          textTransform: "uppercase",
-          fontSize: "12pt",
-          padding: 1,
+      {/* <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          gap: "10px",
         }}
       >
-        <img
-          src={opponentOneLogo}
-          alt=""
-          style={{ width: "25px", verticalAlign: "middle", margin: "10px" }}
-        />
-        {opponentOneName} Vs
-        <img
-          src={opponentTwoLogo}
-          alt=""
-          style={{ width: "25px", verticalAlign: "middle", margin: "10px" }}
-        />{" "}
-        {opponentTwoName}
-      </Typography>
-      <Typography sx={{ fontWeight: 700 }}>
-        {date.split("T")[0]} | GMT - {time}
-      </Typography>
-      <Typography sx={{ fontSize: "10pt" }}>{playGround}</Typography>
-      <Divider variant="middle" sx={{ width: "25%", margin: "auto" }} />
+        <div>
+          <h1>{time}</h1>
+        </div>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              padding: "5px",
+            }}
+          >
+            <img
+              src={opponentOneLogo}
+              alt=""
+              style={{ width: "25px", objectFit: "contain" }}
+            />
+            <h4 style={{ fontWeight: "500", paddingLeft: "10px" }}>
+              {opponentOneName}
+            </h4>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              padding: "5px",
+            }}
+          >
+            <img
+              src={opponentTwoLogo}
+              alt=""
+              style={{ width: "25px", objectFit: "contain" }}
+            />
+            <h4 style={{ fontWeight: "500", paddingLeft: "10px" }}>
+              {opponentTwoName}
+            </h4>
+          </div>
+        </div>
+      </div> */}
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ width: "45%" }}>
+            <img
+              src={opponentOneLogo}
+              alt=""
+              style={{ width: "25px", verticalAlign: "middle", margin: "1px" }}
+            />
+            <h4 style={{ fontWeight: "500" }}>
+              {opponentOneName.split(" ")[0]} {opponentOneName.split(" ")[1]}
+            </h4>
+          </div>
+          <div style={{ width: "10%" }}>vs</div>
+          <div style={{ width: "45%" }}>
+            <img
+              src={opponentTwoLogo}
+              alt=""
+              style={{ width: "25px", verticalAlign: "middle", margin: "1px" }}
+            />
+            <h4 style={{ fontWeight: "500" }}>
+              {opponentTwoName.split(" ")[0]} {opponentTwoName.split(" ")[1]}
+            </h4>
+          </div>
+        </div>
+        <p style={{ fontSize: "10pt" }}>
+          {date.split("T")[0]} | GMT - {time}
+        </p>
+      </div>
     </Grid>
   );
 };

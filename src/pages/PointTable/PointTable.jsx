@@ -13,6 +13,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { getPointTable } from "../../../lib/apis/pointtable-apis";
 import { Link } from "react-router-dom";
+import PageHeader from "../../components/PageHeader";
 
 const PointTable = () => {
   const { data, isLoading } = useQuery({
@@ -24,9 +25,7 @@ const PointTable = () => {
   return (
     <>
       <Box className="container" sx={{ padding: 1 }}>
-        <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
-          Points Table
-        </Typography>
+        <PageHeader title="Point Table" />
         <TableContainer>
           <Table>
             <TableHead sx={{ backgroundColor: "#F1EFEF" }}>

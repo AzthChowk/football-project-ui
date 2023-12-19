@@ -6,6 +6,7 @@ import "../../styles/teams.css";
 
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Link, useNavigate } from "react-router-dom";
+import PageHeader from "../../components/PageHeader";
 
 const Teams = () => {
   const navigate = useNavigate();
@@ -16,15 +17,7 @@ const Teams = () => {
 
   return (
     <Box className="container">
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: 900,
-          padding: "20px 10px",
-        }}
-      >
-        Teams
-      </Typography>
+      <PageHeader title="Teams" />
 
       <Grid container>
         {data?.data.map((item, index) => {

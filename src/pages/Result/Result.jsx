@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 //uuid
 import { v4 as uuidv4 } from "uuid";
 import ResultList from "../../components/Result/ResultList";
+import PageHeader from "../../components/PageHeader";
 
 const Result = () => {
   const [result, setResult] = useState([]);
@@ -22,9 +23,8 @@ const Result = () => {
 
   return (
     <Box className="container" sx={{ padding: 1 }}>
-      <Typography variant="h4" sx={{ fontWeight: 900, padding: "20px 0" }}>
-        Results
-      </Typography>
+      <PageHeader title="Match Results" />
+
       <ResultList />
     </Box>
   );

@@ -29,8 +29,8 @@ const HomePage = () => {
 
   return (
     <Box className="container" sx={{ padding: 1 }}>
-      <Grid container sx={{ padding: "10px" }}>
-        <Grid item xs={12} sm={12} md={8} lg={8} xl={8} sx={{ p: 2 }}>
+      <Grid container>
+        <Grid item xs={12} sm={12} md={6} lg={8} xl={8} sx={{ p: 1 }}>
           <Grid>
             <FeaturedNews />
           </Grid>
@@ -40,7 +40,7 @@ const HomePage = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: 2,
+                padding: 1,
                 alignItems: "center",
               }}
             >
@@ -71,21 +71,18 @@ const HomePage = () => {
         </Grid>
 
         {/* ============ right section matches============== */}
-        <Grid item xs={12} sm={12} md={4} lg={4} xl={4} sx={{ p: 2 }}>
-          <Grid
-            sx={{ border: "1px solid #008849", borderRadius: "10px", mb: 4 }}
-          >
+        <Grid item xs={12} sm={12} md={6} lg={4} xl={4} sx={{ p: 1 }}>
+          <Grid sx={{ border: "1px solid #000", borderRadius: "2px", mb: 4 }}>
             <Typography
               variant="h6"
               sx={{
                 color: "#fff",
-                fontWeight: 900,
-                p: 2,
+                fontWeight: 500,
+                p: 1,
                 textAlign: "center",
                 textTransform: "uppercase",
-                borderRadius: "10px",
-                backgroundColor: "#008849",
-                m: 1,
+                borderRadius: "2px 2px 0 0",
+                backgroundColor: "#000",
               }}
             >
               upcoming matches
@@ -101,7 +98,7 @@ const HomePage = () => {
           <Grid
             sx={{
               backgroundColor: "#E4F1FF",
-              borderRadius: "10px",
+              borderRadius: "2px",
               padding: 1,
             }}
           >
@@ -109,12 +106,11 @@ const HomePage = () => {
               variant="h6"
               sx={{
                 color: "#fff",
-                fontWeight: 900,
-                p: 2,
+                fontWeight: 600,
+                p: 1,
                 textAlign: "center",
                 textTransform: "uppercase",
-                backgroundColor: "#008849",
-                borderRadius: "10px",
+                backgroundColor: "#000",
               }}
             >
               Points table
