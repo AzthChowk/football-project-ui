@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 
 const LatestNewsCard = ({ _id, newsImgUrl, newsTitle, newsHighlights }) => {
   return (
-    <Grid item xs={12} sm={6} md={6} lg={3} xl={3} sx={{ padding: "5px" }}>
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={6}
+      lg={3}
+      xl={3}
+      sx={{ paddingRight: "10px" }}
+    >
       <Link to={`news/${_id}`}>
         <img
           src={newsImgUrl}

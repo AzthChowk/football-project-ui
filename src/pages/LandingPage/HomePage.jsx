@@ -40,11 +40,14 @@ const HomePage = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: 1,
+
                 alignItems: "center",
               }}
             >
-              <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 700, padding: "10px 0" }}
+              >
                 Latest News
               </Typography>
               <Typography sx={{ fontWeight: 500 }}>See all</Typography>
@@ -57,11 +60,14 @@ const HomePage = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: 2,
+
                 alignItems: "center",
               }}
             >
-              <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: 700, padding: "10px 0" }}
+              >
                 Communities
               </Typography>
               <Typography sx={{ fontWeight: 500 }}>See all</Typography>
